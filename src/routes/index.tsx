@@ -470,7 +470,7 @@ function DeepDive() {
                     </div>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {cities.map((c) => (
-                        <span key={c} className="px-3 py-1.5 rounded-full bg-background border border-border text-xs text-foreground/70">
+                        <span key={c} className="px-3 py-1.5 rounded-full bg-background border border-border text-xs text-foreground/70 transition-all duration-150 hover:scale-110 hover:bg-[var(--brand-green)]/15 hover:border-[var(--brand-green)]/40 hover:text-black cursor-default">
                           {c}
                         </span>
                       ))}
