@@ -830,7 +830,7 @@ function Contact() {
             <div className="space-y-8">
               {[
                 { icon: MapPin, title: "Address", text: "No 52, Maddox Street, 1st Floor, Vepery, Chennai 600007" },
-                { icon: Phone, title: "Phone", text: "+91 44 4201 0933" },
+                { icon: Phone, title: "Phone", text: "+91 95661 11058" },
                 { icon: Mail, title: "Email", text: "smtaterctrust@gmail.com" },
                 { icon: Clock, title: "Office hours", text: "Mon - Sat · 10:00 AM – 6:00 PM" },
               ].map((c) => (
