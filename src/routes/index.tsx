@@ -503,7 +503,7 @@ function DeepDive() {
                       ))}
                     </Pie>
                     <Tooltip
-                      contentStyle={{ background: "#1C1C1C", border: "none", borderRadius: 8, color: "#fff" }}
+                      contentStyle={{ background: "#F8F8F6", border: "none", borderRadius: 8, color: "#1C1C1C" }}
                       formatter={(v: number) => `${v}%`}
                     />
                   </PieChart>
