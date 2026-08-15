@@ -41,6 +41,10 @@ import lionsLogo from "@/assets/lions-logo.png";
 import jainLogo from "@/assets/jain-logo.png";
 import vesLogo from "@/assets/ves-logo.png";
 import adinathLogo from "@/assets/adinath-logo.png";
+import eyeCampChennaiImg from "@/assets/gallery-eye-camp-chennai.jpeg";
+import cataractFollowupImg from "@/assets/gallery-cataract-followup.jpeg";
+import studentAwardeesImg from "@/assets/gallery-student-awardees-merta.jpeg";
+import foodDistributionImg from "@/assets/gallery-food-distribution.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -159,21 +163,21 @@ const recognitions = [
   { tier: "Diamond Donor", to: "Mahaveer Rajasthani International School" },
 ];
 
-/* Gallery - uses brand-illustrated cards (real photos to be added by trust) */
+/* Gallery - real photos where available, brand-illustrated cards as placeholders otherwise */
 const galleryCats = ["All", "Eye Camps", "Scholarship Events", "Maternity Hospital", "Gaushala", "Community Events", "Infrastructure"] as const;
 type GalleryCat = (typeof galleryCats)[number];
-const gallery: { cat: Exclude<GalleryCat, "All">; caption: string; h: number; tone: string }[] = [
-  { cat: "Eye Camps", caption: "Free eye screening camp · Chennai", h: 320, tone: "from-[#2F763B] to-[#1f5028]" },
+const gallery: { cat: Exclude<GalleryCat, "All">; caption: string; h: number; tone: string; img?: string }[] = [
+  { cat: "Eye Camps", caption: "Free eye screening camp · Chennai", h: 320, tone: "from-[#2F763B] to-[#1f5028]", img: eyeCampChennaiImg },
   { cat: "Scholarship Events", caption: "Annual scholarship ceremony", h: 420, tone: "from-[#473640] to-[#2a1f25]" },
   { cat: "Maternity Hospital", caption: "Maternity ward inauguration", h: 280, tone: "from-[#C9A23A] to-[#8a6e1f]" },
   { cat: "Gaushala", caption: "Khwaspura Gaushala shed", h: 360, tone: "from-[#8FA68E] to-[#4f6651]" },
   { cat: "Community Events", caption: "Blanket distribution drive", h: 300, tone: "from-[#2F763B] to-[#244f29]" },
   { cat: "Infrastructure", caption: "Sankara Eye Hospital block", h: 400, tone: "from-[#473640] to-[#1c1419]" },
-  { cat: "Eye Camps", caption: "Cataract surgery follow-up", h: 260, tone: "from-[#2F763B] to-[#1f5028]" },
-  { cat: "Scholarship Events", caption: "Student awardees · Merta City", h: 340, tone: "from-[#473640] to-[#2a1f25]" },
+  { cat: "Eye Camps", caption: "Cataract surgery follow-up", h: 260, tone: "from-[#2F763B] to-[#1f5028]", img: cataractFollowupImg },
+  { cat: "Scholarship Events", caption: "Student awardees · Merta City", h: 340, tone: "from-[#473640] to-[#2a1f25]", img: studentAwardeesImg },
   { cat: "Gaushala", caption: "Daily feeding rounds", h: 300, tone: "from-[#8FA68E] to-[#4f6651]" },
-  { cat: "Community Events", caption: "Food distribution drive", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]" },
-  { cat: "Infrastructure", caption: "Dharamshala lodging", h: 280, tone: "from-[#2F763B] to-[#1f5028]" },
+  { cat: "Community Events", caption: "Food distribution drive", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionImg },
+  { cat: "Infrastructure", caption: "Room Donation to Dharamshala lodging", h: 280, tone: "from-[#2F763B] to-[#1f5028]" },
   { cat: "Maternity Hospital", caption: "Newborn care unit", h: 320, tone: "from-[#C9A23A] to-[#8a6e1f]" },
 ];
 
@@ -313,7 +317,7 @@ function Impact() {
         <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden border border-border">
           {impactStats.map((s, i) => (
             <Reveal key={i} delay={i * 0.04}>
-              <div className="bg-background p-5 sm:p-8 lg:p-10 h-full group hover:bg-[var(--surface)] transition-colors">
+              <div className="bg-background p-5 sm:p-8 lg:p-10 h-full group hover:bg-[var(--surface)] active:bg-[var(--surface)] transition-colors">
                 <div className="font-sans text-3xl sm:text-4xl lg:text-[2.5rem] text-[var(--brand-brown)] leading-none">
                   <Counter
                     to={s.value}
@@ -323,7 +327,7 @@ function Impact() {
                   />
                 </div>
                 <div className="mt-4 text-sm uppercase tracking-wider text-foreground/55">{s.label}</div>
-                <div className="mt-6 h-px w-8 bg-[var(--brand-gold)] group-hover:w-16 transition-all duration-500" />
+                <div className="mt-6 h-px w-8 bg-[var(--brand-gold)] group-hover:w-16 group-active:w-16 transition-all duration-500" />
               </div>
             </Reveal>
           ))}
@@ -362,10 +366,10 @@ function OurWork() {
                 <button
                   key={id}
                   onClick={() => setTab(id)}
-                  className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition ${
+                  className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition touch-manipulation ${
                     tab === id
                       ? "bg-[var(--brand-brown)] text-white"
-                      : "bg-background border border-border text-foreground/70 hover:text-foreground"
+                      : "bg-background border border-border text-foreground/70 hover:text-foreground active:text-foreground"
                   }`}
                 >
                   <Icon size={16} />
@@ -391,7 +395,7 @@ function OurWork() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="group relative bg-background rounded-2xl border border-border p-4 hover:shadow-[0_20px_60px_-30px_rgba(0,0,0,0.2)] hover:-translate-y-1 transition-all duration-500"
+                className="group relative bg-background rounded-2xl border border-border p-4 hover:shadow-[0_20px_60px_-30px_rgba(0,0,0,0.2)] hover:-translate-y-1 active:shadow-[0_20px_60px_-30px_rgba(0,0,0,0.2)] active:-translate-y-1 transition-all duration-500 touch-manipulation"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
@@ -407,7 +411,7 @@ function OurWork() {
                       )}
                     </div>
                   </div>
-                  <ArrowUpRight size={16} className="shrink-0 text-foreground/30 group-hover:text-[var(--brand-green)] group-hover:rotate-12 transition-all" />
+                  <ArrowUpRight size={16} className="shrink-0 text-foreground/30 group-hover:text-[var(--brand-green)] group-hover:rotate-12 group-active:text-[var(--brand-green)] group-active:rotate-12 transition-all" />
                 </div>
                 <p className="mt-3 text-sm text-foreground/65 leading-relaxed">{p.desc}</p>
               </motion.div>
@@ -470,7 +474,7 @@ function DeepDive() {
                     </div>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {cities.map((c) => (
-                        <span key={c} className="px-3 py-1.5 rounded-full bg-background border border-border text-xs text-foreground/70 transition-all duration-150 hover:scale-110 hover:bg-[var(--brand-green)]/15 hover:border-[var(--brand-green)]/40 hover:text-black cursor-default">
+                        <span key={c} className="px-3 py-1.5 rounded-full bg-background border border-border text-xs text-foreground/70 transition-all duration-150 hover:scale-110 hover:bg-[var(--brand-green)]/15 hover:border-[var(--brand-green)]/40 hover:text-black active:scale-110 active:bg-[var(--brand-green)]/15 active:border-[var(--brand-green)]/40 active:text-black cursor-default touch-manipulation">
                           {c}
                         </span>
                       ))}
@@ -611,10 +615,10 @@ function Gallery() {
                 <button
                   key={c}
                   onClick={() => setCat(c)}
-                  className={`px-4 py-2 rounded-full text-xs font-medium transition ${
+                  className={`px-4 py-2 rounded-full text-xs font-medium transition touch-manipulation ${
                     cat === c
                       ? "bg-[var(--brand-brown)] text-white"
-                      : "bg-background border border-border text-foreground/70 hover:text-foreground"
+                      : "bg-background border border-border text-foreground/70 hover:text-foreground active:text-foreground"
                   }`}
                 >
                   {c}
@@ -638,15 +642,24 @@ function Gallery() {
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.35, delay: i * 0.03 }}
                 onClick={() => setActive(i)}
-                className={`mb-5 w-full break-inside-avoid relative overflow-hidden rounded-2xl bg-gradient-to-br ${g.tone} group block`}
+                className={`mb-5 w-full break-inside-avoid relative overflow-hidden rounded-2xl ${g.img ? "bg-[var(--surface)]" : `bg-gradient-to-br ${g.tone}`} group block touch-manipulation`}
                 style={{ height: g.h }}
               >
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_60%)]" />
+                {g.img && (
+                  <img src={g.img} alt={g.caption} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+                )}
+                <div
+                  className={`absolute inset-0 ${
+                    g.img
+                      ? "bg-gradient-to-t from-black/75 via-black/10 to-transparent"
+                      : "bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_60%)]"
+                  }`}
+                />
                 <div className="absolute inset-0 flex flex-col justify-end p-3 sm:p-6">
                   <div className="text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-white/70">{g.cat}</div>
                   <div className="mt-1 sm:mt-2 font-display text-sm sm:text-xl text-white leading-snug">{g.caption}</div>
                 </div>
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-black/20" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition bg-black/20" />
               </motion.button>
             ))}
           </AnimatePresence>
@@ -669,9 +682,19 @@ function Gallery() {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className={`relative w-full max-w-2xl aspect-[4/3] rounded-3xl bg-gradient-to-br ${items[active].tone}`}
+              className={`relative w-full max-w-2xl aspect-[4/3] rounded-3xl overflow-hidden ${
+                items[active].img ? "bg-[var(--surface)]" : `bg-gradient-to-br ${items[active].tone}`
+              }`}
               onClick={(e) => e.stopPropagation()}
             >
+              {items[active].img && (
+                <img src={items[active].img} alt={items[active].caption} className="absolute inset-0 h-full w-full object-cover" />
+              )}
+              <div
+                className={`absolute inset-0 ${
+                  items[active].img ? "bg-gradient-to-t from-black/75 via-black/10 to-transparent" : ""
+                }`}
+              />
               <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-10">
                 <div className="text-xs tracking-[0.2em] uppercase text-white/70">{items[active].cat}</div>
                 <div className="mt-2 font-display text-xl sm:text-3xl text-white">{items[active].caption}</div>
@@ -793,7 +816,7 @@ function About() {
           <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {values.map(({ icon: Icon, title, text }, i) => (
               <Reveal key={title} delay={i * 0.05}>
-                <div className="bg-background rounded-2xl border border-border p-5 h-full hover:-translate-y-1 hover:shadow-[0_20px_60px_-30px_rgba(0,0,0,0.2)] transition-all duration-500 flex items-center justify-between gap-4">
+                <div className="bg-background rounded-2xl border border-border p-5 h-full hover:-translate-y-1 hover:shadow-[0_20px_60px_-30px_rgba(0,0,0,0.2)] active:-translate-y-1 active:shadow-[0_20px_60px_-30px_rgba(0,0,0,0.2)] transition-all duration-500 flex items-center justify-between gap-4 touch-manipulation">
                   <div>
                     <h3 className="font-display text-lg text-[var(--brand-brown)]">{title}</h3>
                     <p className="mt-1 text-sm text-foreground/65">{text}</p>

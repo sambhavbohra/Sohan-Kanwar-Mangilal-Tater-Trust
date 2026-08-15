@@ -100,7 +100,7 @@ export function Navbar() {
         <button
           aria-label="Menu"
           onClick={() => setOpen(!open)}
-          className="lg:hidden p-2 text-foreground"
+          className="lg:hidden p-2.5 -mr-2.5 text-foreground touch-manipulation"
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>

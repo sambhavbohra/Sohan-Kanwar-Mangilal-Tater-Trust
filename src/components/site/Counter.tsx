@@ -13,7 +13,7 @@ export function Counter({
   format?: "number" | "inr";
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
   const mv = useMotionValue(0);
   const spring = useSpring(mv, { duration: 1800, bounce: 0 });
   const [val, setVal] = useState(0);
