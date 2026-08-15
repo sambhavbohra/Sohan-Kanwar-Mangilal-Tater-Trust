@@ -2,7 +2,12 @@ node_modules
 dist
 .output
 .vinxi
+.wrangler
 .DS_Store
 *.log
 .env
 .env.*
+/assets to update/
+/assets to update/**
+/attached_assets/
+/attached_assets/**

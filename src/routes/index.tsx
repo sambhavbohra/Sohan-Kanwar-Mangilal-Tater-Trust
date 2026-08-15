@@ -41,10 +41,25 @@ import lionsLogo from "@/assets/lions-logo.png";
 import jainLogo from "@/assets/jain-logo.png";
 import vesLogo from "@/assets/ves-logo.png";
 import adinathLogo from "@/assets/adinath-logo.png";
-import eyeCampChennaiImg from "@/assets/gallery-eye-camp-chennai.jpeg";
-import cataractFollowupImg from "@/assets/gallery-cataract-followup.jpeg";
-import studentAwardeesImg from "@/assets/gallery-student-awardees-merta.jpeg";
+import annualScholarshipCeremonyChennaiImg from "@/assets/gallery-annual-scholarship-ceremony-chennai.jpeg";
+import awardedRajasthanShreeImg from "@/assets/gallery-awarded-rajasthan-shree-rajasthan-sangh-chennai.jpeg";
+import cataractSurgeryChennaiMetroMahaveerImg from "@/assets/gallery-cataract-surgery-chennai-metro-mahaveer.jpeg";
+import cataractSurgeryFollowUpImg from "@/assets/gallery-cataract-surgery-follow-up.jpeg";
+import chaaraGodownNagaurImg from "@/assets/gallery-chaara-godown-nagaur.jpeg";
+import foodDistributionDriveAkshayaTrustImg from "@/assets/gallery-food-distribution-drive-akshaya-trust.jpeg";
+import foodDistributionDriveNewImg from "@/assets/gallery-food-distribution-drive-new.jpeg";
+import foodDistributionDriveImg from "@/assets/gallery-food-distribution-drive.jpeg";
 import foodDistributionImg from "@/assets/gallery-food-distribution.jpeg";
+import freeEyeScreeningCampChennaiImg from "@/assets/gallery-free-eye-screening-camp-chennai.jpeg";
+import hallDonatedMarudharMertaCityImg from "@/assets/gallery-hall-donated-marudhar-merta-city.jpeg";
+import khwaspuraGaushalaShedImg from "@/assets/gallery-khwaspura-gaushala-shed.jpeg";
+import maternityWardInaugurationImg from "@/assets/gallery-maternity-ward-inauguration.jpeg";
+import mouSewaBhartiMultiSpecialtyHospitalImg from "@/assets/gallery-mou-sewa-bharti-multi-specialty-hospital.jpeg";
+import newbornCareUnitImg from "@/assets/gallery-newborn-care-unit.jpeg";
+import prostheticsDistributionAdinathJainTrustImg from "@/assets/gallery-prosthetics-distribution-adinath-jain-trust-chennai.jpeg";
+import prostheticsDistributionImg from "@/assets/gallery-prosthetics-distribution.jpeg";
+import roomDonationDharamshalaLodgingImg from "@/assets/gallery-room-donation-dharamshala-lodging.jpeg";
+import sankaraEyeHospitalBlockImg from "@/assets/gallery-sankara-eye-hospital-block.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -163,22 +178,29 @@ const recognitions = [
   { tier: "Diamond Donor", to: "Mahaveer Rajasthani International School" },
 ];
 
-/* Gallery - real photos where available, brand-illustrated cards as placeholders otherwise */
-const galleryCats = ["All", "Eye Camps", "Scholarship Events", "Maternity Hospital", "Gaushala", "Community Events", "Infrastructure"] as const;
+/* Gallery */
+const galleryCats = ["All", "Eye Camps", "Healthcare", "Scholarship Events", "Maternity Hospital", "Gaushala", "Community Events", "Infrastructure"] as const;
 type GalleryCat = (typeof galleryCats)[number];
-const gallery: { cat: Exclude<GalleryCat, "All">; caption: string; h: number; tone: string; img?: string }[] = [
-  { cat: "Eye Camps", caption: "Free eye screening camp · Chennai", h: 320, tone: "from-[#2F763B] to-[#1f5028]", img: eyeCampChennaiImg },
-  { cat: "Scholarship Events", caption: "Annual scholarship ceremony", h: 420, tone: "from-[#473640] to-[#2a1f25]" },
-  { cat: "Maternity Hospital", caption: "Maternity ward inauguration", h: 280, tone: "from-[#C9A23A] to-[#8a6e1f]" },
-  { cat: "Gaushala", caption: "Khwaspura Gaushala shed", h: 360, tone: "from-[#8FA68E] to-[#4f6651]" },
-  { cat: "Community Events", caption: "Blanket distribution drive", h: 300, tone: "from-[#2F763B] to-[#244f29]" },
-  { cat: "Infrastructure", caption: "Sankara Eye Hospital block", h: 400, tone: "from-[#473640] to-[#1c1419]" },
-  { cat: "Eye Camps", caption: "Cataract surgery follow-up", h: 260, tone: "from-[#2F763B] to-[#1f5028]", img: cataractFollowupImg },
-  { cat: "Scholarship Events", caption: "Student awardees · Merta City", h: 340, tone: "from-[#473640] to-[#2a1f25]", img: studentAwardeesImg },
-  { cat: "Gaushala", caption: "Daily feeding rounds", h: 300, tone: "from-[#8FA68E] to-[#4f6651]" },
-  { cat: "Community Events", caption: "Food distribution drive", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionImg },
-  { cat: "Infrastructure", caption: "Room Donation to Dharamshala lodging", h: 280, tone: "from-[#2F763B] to-[#1f5028]" },
-  { cat: "Maternity Hospital", caption: "Newborn care unit", h: 320, tone: "from-[#C9A23A] to-[#8a6e1f]" },
+const gallery: { cat: Exclude<GalleryCat, "All">; caption: string; h: number; tone: string; img: string }[] = [
+  { cat: "Eye Camps", caption: "Free Eye Screening Camp Chennai", h: 320, tone: "from-[#2F763B] to-[#1f5028]", img: freeEyeScreeningCampChennaiImg },
+  { cat: "Scholarship Events", caption: "Annual Scholarship Ceremony Chennai", h: 420, tone: "from-[#473640] to-[#2a1f25]", img: annualScholarshipCeremonyChennaiImg },
+  { cat: "Maternity Hospital", caption: "Maternity Ward Inauguration", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: maternityWardInaugurationImg },
+  { cat: "Gaushala", caption: "Khwaspura Gaushala Shed", h: 360, tone: "from-[#8FA68E] to-[#4f6651]", img: khwaspuraGaushalaShedImg },
+  { cat: "Infrastructure", caption: "Sankara Eye Hospital Block", h: 400, tone: "from-[#473640] to-[#1c1419]", img: sankaraEyeHospitalBlockImg },
+  { cat: "Eye Camps", caption: "Cataract Surgery Follow-Up", h: 280, tone: "from-[#2F763B] to-[#1f5028]", img: cataractSurgeryFollowUpImg },
+  { cat: "Community Events", caption: "Food Distribution Drive", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveImg },
+  { cat: "Infrastructure", caption: "Room Donation To Dharamshala Lodging", h: 320, tone: "from-[#2F763B] to-[#1f5028]", img: roomDonationDharamshalaLodgingImg },
+  { cat: "Maternity Hospital", caption: "Newborn Care Unit", h: 320, tone: "from-[#C9A23A] to-[#8a6e1f]", img: newbornCareUnitImg },
+  { cat: "Gaushala", caption: "Chaara Godown Nagaur", h: 340, tone: "from-[#8FA68E] to-[#4f6651]", img: chaaraGodownNagaurImg },
+  { cat: "Community Events", caption: "Food Distribution Drive", h: 420, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveNewImg },
+  { cat: "Community Events", caption: "Food Distribution Drive With Akshaya Trust", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveAkshayaTrustImg },
+  { cat: "Healthcare", caption: "Prosthetics Distribution", h: 300, tone: "from-[#2F763B] to-[#1f5028]", img: prostheticsDistributionImg },
+  { cat: "Infrastructure", caption: "Hall Donated In Marudhar Merta City", h: 320, tone: "from-[#473640] to-[#1c1419]", img: hallDonatedMarudharMertaCityImg },
+  { cat: "Infrastructure", caption: "MoU Between Our Trust And Sewa Bharti Tamil Nadu For Multi-Specialty Hospital", h: 420, tone: "from-[#473640] to-[#1c1419]", img: mouSewaBhartiMultiSpecialtyHospitalImg },
+  { cat: "Community Events", caption: "Food Distribution", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionImg },
+  { cat: "Eye Camps", caption: "Cataract Surgery With Chennai Metro Mahaveer", h: 340, tone: "from-[#2F763B] to-[#1f5028]", img: cataractSurgeryChennaiMetroMahaveerImg },
+  { cat: "Community Events", caption: "Awarded Rajasthan Shree By Rajasthan Sangh Chennai", h: 320, tone: "from-[#473640] to-[#2a1f25]", img: awardedRajasthanShreeImg },
+  { cat: "Healthcare", caption: "Prosthetics Distribution With Adinath Jain Trust Chennai", h: 360, tone: "from-[#2F763B] to-[#1f5028]", img: prostheticsDistributionAdinathJainTrustImg },
 ];
 
 /* ───────────────────────── PAGE ───────────────────────── */
@@ -272,9 +294,14 @@ function Hero() {
           transition={{ duration: 0.9, delay: 0.4 }}
           className="hidden lg:flex lg:col-span-4 justify-center"
         >
-          <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-[var(--brand-gold)]/40 blur-2xl scale-110" />
-            <img src={logo1} alt="Trust emblem" className="relative h-80 w-80 object-contain" />
+          <div className="relative isolate flex h-96 w-96 items-center justify-center">
+            <div className="absolute inset-6 rounded-full bg-[var(--brand-gold)]/35 blur-3xl" />
+            <div className="absolute inset-12 rounded-full border border-[var(--brand-gold)]/35 bg-background/20 shadow-[0_40px_110px_-70px_rgba(47,118,59,0.8)]" />
+            <img
+              src={logo1}
+              alt="Trust emblem"
+              className="relative h-80 w-80 object-contain contrast-110 saturate-110 drop-shadow-[0_22px_34px_rgba(71,54,64,0.14)]"
+            />
           </div>
         </motion.div>
       </div>
