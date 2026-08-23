@@ -14,20 +14,13 @@ import {
   Sparkles,
   Eye,
   Building2,
-  Award,
   MapPin,
   Phone,
   Mail,
   Clock,
   X,
 } from "lucide-react";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
+import { IndiaMap, places } from "@/components/IndiaMap";
 
 import { Navbar } from "@/components/site/Navbar";
 import { Reveal } from "@/components/site/Reveal";
@@ -60,6 +53,9 @@ import prostheticsDistributionAdinathJainTrustImg from "@/assets/gallery-prosthe
 import prostheticsDistributionImg from "@/assets/gallery-prosthetics-distribution.jpeg";
 import roomDonationDharamshalaLodgingImg from "@/assets/gallery-room-donation-dharamshala-lodging.jpeg";
 import sankaraEyeHospitalBlockImg from "@/assets/gallery-sankara-eye-hospital-block.jpeg";
+import mangilalChandjiTaterImg from "@/assets/founder-mangilal-chandji-tater.jpeg";
+import sohanKanwarTaterImg from "@/assets/founder-sohan-kanwar-tater.jpeg";
+import mangalChandTaterImg from "@/assets/founder-mangal-chand-tater.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -92,6 +88,12 @@ const impactStats = [
   { value: 1307, label: "Eye camps conducted" },
   { value: 2000, label: "Disabled people benefited", suffix: "+" },
   { value: 2, label: "Dialysis machines donated" },
+];
+
+const founders = [
+  { name: "Mangilal Chandji Tater", years: "1933 – 2011", img: mangilalChandjiTaterImg },
+  { name: "Sohan Kanwar Tater", years: "1936 – 2017", img: sohanKanwarTaterImg },
+  { name: "Mangal Chand Tater", years: "1955 – 2025", img: mangalChandTaterImg },
 ];
 
 const values = [
@@ -138,27 +140,42 @@ const work: Record<"Education" | "Healthcare" | "Community" | "Animal", Project[
 };
 
 const timeline = [
-  { year: "2011", title: "The Trust is established", text: "Founded in Chennai with roots in Merta City, Rajasthan." },
-  { year: "2013", title: "Scholarship programme begins", text: "First cohort of students supported." },
-  { year: "2015", title: "Eye camps scale", text: "Camps reach thousands across Tamil Nadu." },
-  { year: "2017", title: "Maternity hospital milestone", text: "Thousands of safe deliveries celebrated." },
-  { year: "2019", title: "Gaushala expansion", text: "Shelters built across Rajasthan." },
-  { year: "2022", title: "Dialysis support", text: "Dialysis machines installed at RYA Hospital." },
-  { year: "Today", title: "A growing legacy", text: "12+ years, thousands of lives touched." },
-];
-
-const places = {
-  "Tamil Nadu": ["Chennai", "Pammal", "Pambal", "Ayanavaram", "Egmore", "Vyasarpadi", "Uttukottai", "Kodambakkam", "Coimbatore"],
-  Rajasthan: ["Merta City", "Mandoli", "Khwaspura", "Lambiya", "Kapeda", "Khajwana", "Ostra", "Jaipur"],
-  Karnataka: ["Bangalore", "Chikkaballapur"],
-  Gujarat: ["Palitana"],
-};
-
-const chartData = [
-  { name: "Healthcare", value: 48, color: "#2F763B" },
-  { name: "Education", value: 28, color: "#C97B4A" },
-  { name: "Community Welfare", value: 16, color: "#C9A23A" },
-  { name: "Animal Welfare", value: 8, color: "#8FA68E" },
+  { year: "2011", title: "Trust Established", text: "Sohan Kanwar Mangilal Tater Charitable Trust begins its journey of service.", icon: Sparkles },
+  { year: "2012–21", title: "Growing Years", text: "Expanding in education and healthcare through annual scholarships and eye camps.", icon: ArrowUpRight },
+  {
+    year: "2022",
+    title: "10th Scholarship Distribution",
+    text: "A decade of scholarship support, celebrated with a landmark tally.",
+    icon: GraduationCap,
+    stats: ["4,298 students supported", "₹1.66 crore over 13 years"],
+  },
+  {
+    year: "2022",
+    title: "Healthcare & Education",
+    text: "Eye care and infrastructure support reach a major milestone.",
+    icon: Stethoscope,
+    stats: ["1,212 eye camps", "1.67 lakh screenings", "46,926 surgeries", "14,281 spectacles", "4.36 acres donated for a school"],
+  },
+  {
+    year: "2022",
+    title: "Seva Mahostav",
+    text: "₹5 crore committed across education, healthcare, community welfare, animal welfare and disaster relief.",
+    icon: HandHeart,
+  },
+  {
+    year: "2026",
+    title: "14th Scholarship Distribution",
+    text: "Another cohort of students supported in their pursuit of education.",
+    icon: GraduationCap,
+    stats: ["456 students", "₹25.07 lakh in scholarships"],
+  },
+  {
+    year: "2026",
+    title: "Empowering Lives",
+    text: "Mobility and independence restored for those who need it most.",
+    icon: Heart,
+    stats: ["500 individuals supported with limbs and wheelchairs"],
+  },
 ];
 
 const partners = [
@@ -172,35 +189,29 @@ const partners = [
   { name: "Adinath Jain Trust", logo: adinathLogo },
 ];
 
-const recognitions = [
-  { tier: "Golden Level Donor", to: "RYA Hospital" },
-  { tier: "Golden Level Donor", to: "Kewal Chand Mohini Bai Daga Dialysis Centre" },
-  { tier: "Diamond Donor", to: "Mahaveer Rajasthani International School" },
-];
-
 /* Gallery */
 const galleryCats = ["All", "Eye Camps", "Healthcare", "Scholarship Events", "Maternity Hospital", "Gaushala", "Community Events", "Infrastructure"] as const;
 type GalleryCat = (typeof galleryCats)[number];
 const gallery: { cat: Exclude<GalleryCat, "All">; caption: string; h: number; tone: string; img: string }[] = [
-  { cat: "Eye Camps", caption: "Free Eye Screening Camp Chennai", h: 320, tone: "from-[#2F763B] to-[#1f5028]", img: freeEyeScreeningCampChennaiImg },
-  { cat: "Scholarship Events", caption: "Annual Scholarship Ceremony Chennai", h: 420, tone: "from-[#473640] to-[#2a1f25]", img: annualScholarshipCeremonyChennaiImg },
+  { cat: "Eye Camps", caption: "Free Eye Screening Camp Chennai", h: 320, tone: "from-[#1E3A5F] to-[#142943]", img: freeEyeScreeningCampChennaiImg },
+  { cat: "Scholarship Events", caption: "Annual Scholarship Ceremony Chennai", h: 420, tone: "from-[#800000] to-[#4d0000]", img: annualScholarshipCeremonyChennaiImg },
   { cat: "Maternity Hospital", caption: "Maternity Ward Inauguration", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: maternityWardInaugurationImg },
   { cat: "Gaushala", caption: "Khwaspura Gaushala Shed", h: 360, tone: "from-[#8FA68E] to-[#4f6651]", img: khwaspuraGaushalaShedImg },
-  { cat: "Infrastructure", caption: "Sankara Eye Hospital Block", h: 400, tone: "from-[#473640] to-[#1c1419]", img: sankaraEyeHospitalBlockImg },
-  { cat: "Eye Camps", caption: "Cataract Surgery Follow-Up", h: 280, tone: "from-[#2F763B] to-[#1f5028]", img: cataractSurgeryFollowUpImg },
+  { cat: "Infrastructure", caption: "Sankara Eye Hospital Block", h: 400, tone: "from-[#800000] to-[#3d0000]", img: sankaraEyeHospitalBlockImg },
+  { cat: "Eye Camps", caption: "Cataract Surgery Follow-Up", h: 280, tone: "from-[#1E3A5F] to-[#142943]", img: cataractSurgeryFollowUpImg },
   { cat: "Community Events", caption: "Food Distribution Drive", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveImg },
-  { cat: "Infrastructure", caption: "Room Donation To Dharamshala Lodging", h: 320, tone: "from-[#2F763B] to-[#1f5028]", img: roomDonationDharamshalaLodgingImg },
+  { cat: "Infrastructure", caption: "Room Donation To Dharamshala Lodging", h: 320, tone: "from-[#1E3A5F] to-[#142943]", img: roomDonationDharamshalaLodgingImg },
   { cat: "Maternity Hospital", caption: "Newborn Care Unit", h: 320, tone: "from-[#C9A23A] to-[#8a6e1f]", img: newbornCareUnitImg },
   { cat: "Gaushala", caption: "Chaara Godown Nagaur", h: 340, tone: "from-[#8FA68E] to-[#4f6651]", img: chaaraGodownNagaurImg },
   { cat: "Community Events", caption: "Food Distribution Drive", h: 420, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveNewImg },
   { cat: "Community Events", caption: "Food Distribution Drive With Akshaya Trust", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveAkshayaTrustImg },
-  { cat: "Healthcare", caption: "Prosthetics Distribution", h: 300, tone: "from-[#2F763B] to-[#1f5028]", img: prostheticsDistributionImg },
-  { cat: "Infrastructure", caption: "Hall Donated In Marudhar Merta City", h: 320, tone: "from-[#473640] to-[#1c1419]", img: hallDonatedMarudharMertaCityImg },
-  { cat: "Infrastructure", caption: "MoU Between Our Trust And Sewa Bharti Tamil Nadu For Multi-Specialty Hospital", h: 420, tone: "from-[#473640] to-[#1c1419]", img: mouSewaBhartiMultiSpecialtyHospitalImg },
+  { cat: "Healthcare", caption: "Prosthetics Distribution", h: 300, tone: "from-[#1E3A5F] to-[#142943]", img: prostheticsDistributionImg },
+  { cat: "Infrastructure", caption: "Hall Donated In Marudhar Merta City", h: 320, tone: "from-[#800000] to-[#3d0000]", img: hallDonatedMarudharMertaCityImg },
+  { cat: "Infrastructure", caption: "MoU Between Our Trust And Sewa Bharti Tamil Nadu For Multi-Specialty Hospital", h: 420, tone: "from-[#800000] to-[#3d0000]", img: mouSewaBhartiMultiSpecialtyHospitalImg },
   { cat: "Community Events", caption: "Food Distribution", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionImg },
-  { cat: "Eye Camps", caption: "Cataract Surgery With Chennai Metro Mahaveer", h: 340, tone: "from-[#2F763B] to-[#1f5028]", img: cataractSurgeryChennaiMetroMahaveerImg },
-  { cat: "Community Events", caption: "Awarded Rajasthan Shree By Rajasthan Sangh Chennai", h: 320, tone: "from-[#473640] to-[#2a1f25]", img: awardedRajasthanShreeImg },
-  { cat: "Healthcare", caption: "Prosthetics Distribution With Adinath Jain Trust Chennai", h: 360, tone: "from-[#2F763B] to-[#1f5028]", img: prostheticsDistributionAdinathJainTrustImg },
+  { cat: "Eye Camps", caption: "Cataract Surgery With Chennai Metro Mahaveer", h: 340, tone: "from-[#1E3A5F] to-[#142943]", img: cataractSurgeryChennaiMetroMahaveerImg },
+  { cat: "Community Events", caption: "Awarded Rajasthan Shree By Rajasthan Sangh Chennai", h: 320, tone: "from-[#800000] to-[#4d0000]", img: awardedRajasthanShreeImg },
+  { cat: "Healthcare", caption: "Prosthetics Distribution With Adinath Jain Trust Chennai", h: 360, tone: "from-[#1E3A5F] to-[#142943]", img: prostheticsDistributionAdinathJainTrustImg },
 ];
 
 /* ───────────────────────── PAGE ───────────────────────── */
@@ -212,6 +223,7 @@ function Index() {
       <main>
         <Hero />
         <Impact />
+        <Founders />
         <OurWork />
         <DeepDive />
         <About />
@@ -364,13 +376,45 @@ function Impact() {
   );
 }
 
+/* ───────────────────────── FOUNDERS ───────────────────────── */
+
+function Founders() {
+  return (
+    <section id="founders" className="section-pad bg-[var(--surface)]">
+      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+        <Reveal>
+          <h2 className="text-center font-display text-4xl sm:text-5xl leading-[1.05] text-balance">
+            In Loving Memory
+          </h2>
+        </Reveal>
+
+        <div className="mt-14 flex flex-col sm:flex-row flex-wrap justify-center gap-10 sm:gap-14">
+          {founders.map((f, i) => (
+            <Reveal key={f.name} delay={i * 0.1}>
+              <div className="flex flex-col items-center text-center w-48">
+                <img
+                  src={f.img}
+                  alt={f.name}
+                  className="h-40 w-40 rounded-full object-cover border-4 border-[var(--brand-gold)]/40 shadow-lg"
+                />
+                <div className="mt-5 font-display text-lg text-[var(--brand-brown)]">{f.name}</div>
+                <div className="mt-1 text-sm text-foreground/55 tracking-wide">{f.years}</div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ───────────────────────── OUR WORK ───────────────────────── */
 
 const tabs = [
-  { id: "Education" as const, icon: GraduationCap },
-  { id: "Healthcare" as const, icon: Stethoscope },
-  { id: "Community" as const, icon: Users },
-  { id: "Animal" as const, icon: PawPrint },
+  { id: "Education" as const, icon: GraduationCap, label: "Education" },
+  { id: "Healthcare" as const, icon: Stethoscope, label: "Healthcare" },
+  { id: "Community" as const, icon: Users, label: "Community" },
+  { id: "Animal" as const, icon: PawPrint, label: "Animal Welfare" },
 ];
 
 function OurWork() {
@@ -381,26 +425,26 @@ function OurWork() {
     <section id="work" className="section-pad bg-[var(--surface)]">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <Reveal>
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <div className="max-w-2xl">
+          <div className="flex flex-col gap-6">
+            <div>
               <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Our Work</p>
-              <h2 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-balance">
+              <h2 className="mt-4 font-display text-2xl sm:text-4xl lg:text-6xl leading-[1.05] whitespace-nowrap">
                 Programmes that move quietly, reach widely.
               </h2>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {tabs.map(({ id, icon: Icon }) => (
+            <div className="flex flex-nowrap gap-2 overflow-x-auto -mx-1 px-1 sm:mx-0 sm:px-0">
+              {tabs.map(({ id, icon: Icon, label }) => (
                 <button
                   key={id}
                   onClick={() => setTab(id)}
-                  className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition touch-manipulation ${
+                  className={`inline-flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition touch-manipulation ${
                     tab === id
                       ? "bg-[var(--brand-brown)] text-white"
                       : "bg-background border border-border text-foreground/70 hover:text-foreground active:text-foreground"
                   }`}
                 >
                   <Icon size={16} />
-                  {id}
+                  {label}
                 </button>
               ))}
             </div>
@@ -453,6 +497,9 @@ function OurWork() {
 /* ───────────────────────── DEEP DIVE ───────────────────────── */
 
 function DeepDive() {
+  const [activeCity, setActiveCity] = useState<string | null>(null);
+  const [zoomedState, setZoomedState] = useState<string | null>(null);
+
   return (
     <section className="section-pad bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-10 space-y-16 lg:space-y-28">
@@ -465,23 +512,48 @@ function DeepDive() {
             </h2>
           </Reveal>
 
-          <div className="mt-16 relative">
-            <div className="absolute left-4 lg:left-1/2 top-0 bottom-0 w-px bg-border" aria-hidden />
-            <div className="space-y-12">
-              {timeline.map((t, i) => (
-                <Reveal key={t.year} delay={i * 0.04}>
-                  <div className={`relative grid lg:grid-cols-2 gap-6 lg:gap-16 items-start ${i % 2 ? "lg:[direction:rtl]" : ""}`}>
-                    <div className="pl-12 lg:pl-0 lg:[direction:ltr] lg:pr-12 lg:text-right">
-                      <div className="font-display text-3xl text-[var(--brand-green)]">{t.year}</div>
+          <div className="mt-12 relative">
+            <div
+              className="absolute left-[4.5rem] sm:left-24 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--brand-gold)] via-border to-transparent"
+              aria-hidden
+            />
+            <div className="space-y-6">
+              {timeline.map((t, i) => {
+                const Icon = t.icon;
+                return (
+                  <Reveal key={`${t.year}-${t.title}`} delay={i * 0.03}>
+                    <div className="relative grid grid-cols-[3.5rem_1fr] sm:grid-cols-[5rem_1fr] gap-3 sm:gap-5 items-start">
+                      <div className="pt-3 text-right">
+                        <span className="font-display text-sm sm:text-base text-[var(--brand-green)]">{t.year}</span>
+                      </div>
+                      <div className="group rounded-xl border border-border bg-[var(--surface)] px-4 py-3 sm:px-5 sm:py-4 transition-all duration-300 hover:border-[var(--brand-gold)]/50 hover:shadow-md hover:shadow-[var(--brand-brown)]/5">
+                        <div className="flex items-center gap-2">
+                          {Icon && (
+                            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--brand-gold)]/15 text-[var(--brand-brown)]">
+                              <Icon size={12} />
+                            </span>
+                          )}
+                          <h3 className="font-display text-base sm:text-lg text-[var(--brand-brown)]">{t.title}</h3>
+                        </div>
+                        <p className="mt-1.5 text-sm text-foreground/65 max-w-md">{t.text}</p>
+                        {t.stats && (
+                          <div className="mt-2.5 flex flex-wrap gap-1.5">
+                            {t.stats.map((s) => (
+                              <span
+                                key={s}
+                                className="rounded-full border border-[var(--brand-green)]/25 bg-[var(--brand-green)]/5 px-2.5 py-0.5 text-[11px] font-medium text-[var(--brand-green)]"
+                              >
+                                {s}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      <div className="absolute left-[4.5rem] sm:left-24 top-4 h-3 w-3 -translate-x-1/2 rounded-full bg-[var(--brand-gold)] ring-4 ring-background shadow-[0_0_0_1px_var(--border)]" />
                     </div>
-                    <div className="pl-12 lg:pl-12 lg:[direction:ltr]">
-                      <h3 className="font-display text-xl text-[var(--brand-brown)]">{t.title}</h3>
-                      <p className="mt-2 text-foreground/65 max-w-md">{t.text}</p>
-                    </div>
-                    <div className="absolute left-2.5 lg:left-1/2 lg:-translate-x-1/2 top-2 h-3 w-3 rounded-full bg-[var(--brand-gold)] ring-4 ring-background" />
-                  </div>
-                </Reveal>
-              ))}
+                  </Reveal>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -495,13 +567,30 @@ function DeepDive() {
               <div className="mt-8 space-y-6">
                 {Object.entries(places).map(([state, cities]) => (
                   <div key={state}>
-                    <div className="flex items-center gap-2 text-sm font-medium text-[var(--brand-brown)]">
+                    <button
+                      type="button"
+                      onClick={() => setZoomedState((cur) => (cur === state ? null : state))}
+                      className="flex items-center gap-2 text-sm font-medium text-[var(--brand-brown)] touch-manipulation"
+                    >
                       <MapPin size={14} className="text-[var(--brand-green)]" />
                       {state}
-                    </div>
+                    </button>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {cities.map((c) => (
-                        <span key={c} className="px-3 py-1.5 rounded-full bg-background border border-border text-xs text-foreground/70 transition-all duration-150 hover:scale-110 hover:bg-[var(--brand-green)]/15 hover:border-[var(--brand-green)]/40 hover:text-black active:scale-110 active:bg-[var(--brand-green)]/15 active:border-[var(--brand-green)]/40 active:text-black cursor-default touch-manipulation">
+                        <span
+                          key={c}
+                          onMouseEnter={() => setActiveCity(c)}
+                          onMouseLeave={() => setActiveCity((cur) => (cur === c ? null : cur))}
+                          onClick={() => {
+                            setActiveCity(c);
+                            setZoomedState(state);
+                          }}
+                          className={`px-3 py-1.5 rounded-full bg-background border text-xs transition-all duration-150 cursor-pointer touch-manipulation ${
+                            activeCity === c
+                              ? "scale-110 bg-[var(--brand-green)]/15 border-[var(--brand-green)]/40 text-black"
+                              : "border-border text-foreground/70"
+                          }`}
+                        >
                           {c}
                         </span>
                       ))}
@@ -513,42 +602,26 @@ function DeepDive() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="bg-[var(--brand-brown)] text-white rounded-3xl p-6 sm:p-8 lg:p-10 h-full">
-              <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-gold)] font-medium">Allocation</p>
-              <h3 className="mt-3 font-display text-3xl text-white">Where the work is focused</h3>
-              <div className="mt-6 h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={chartData}
-                      dataKey="value"
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={60}
-                      outerRadius={100}
-                      paddingAngle={2}
-                      stroke="none"
-                    >
-                      {chartData.map((entry, i) => (
-                        <Cell key={i} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <Tooltip
-                      contentStyle={{ background: "#F8F8F6", border: "none", borderRadius: 8, color: "#1C1C1C" }}
-                      formatter={(v: number) => `${v}%`}
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
+            <div className="bg-[var(--surface)] rounded-3xl p-6 sm:p-8 lg:p-10 h-full border border-border">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Reach</p>
+                  <h3 className="mt-3 font-display text-3xl text-[var(--brand-brown)]">On the map</h3>
+                </div>
+                {zoomedState && (
+                  <button
+                    type="button"
+                    onClick={() => setZoomedState(null)}
+                    className="shrink-0 rounded-full border border-border px-3 py-1.5 text-xs text-foreground/60 hover:text-foreground touch-manipulation"
+                  >
+                    Show all of India
+                  </button>
+                )}
               </div>
-              <div className="mt-4 grid grid-cols-2 gap-3">
-                {chartData.map((c) => (
-                  <div key={c.name} className="flex items-center gap-2 text-sm">
-                    <span className="h-3 w-3 rounded-sm" style={{ background: c.color }} />
-                    <span className="text-white/80">{c.name}</span>
-                    <span className="ml-auto text-white/60">{c.value}%</span>
-                  </div>
-                ))}
+              <div className="mt-4 h-72 sm:h-80 rounded-2xl border border-border overflow-hidden bg-white">
+                <IndiaMap activeCity={activeCity} zoomedState={zoomedState} />
               </div>
+              <p className="mt-2 text-center text-xs text-foreground/50">Hover a city, or click a state, to zoom in.</p>
             </div>
           </Reveal>
         </div>
@@ -575,40 +648,6 @@ function DeepDive() {
                     )}
                     <div className="text-sm font-medium text-[var(--brand-brown)] leading-tight">{p.name}</div>
                   </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-        {/* Recognition */}
-        <div id="recognition">
-          <Reveal>
-            <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Recognition</p>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl leading-tight">Honoured by those we serve.</h2>
-          </Reveal>
-          <div className="mt-12 grid md:grid-cols-3 gap-5">
-            {recognitions.map((r, i) => (
-              <Reveal key={r.to} delay={i * 0.06}>
-                <div className="rounded-2xl border border-border bg-background p-5 sm:p-8 h-full">
-                  {r.to === "RYA Hospital" ? (
-                    <img src={ryaLogo} alt="RYA Hospital" className="h-16 w-auto object-contain" />
-                  ) : r.to === "Mahaveer Rajasthani International School" ? (
-                    <img src={mahaveerLogo} alt="Mahaveer Rajasthani International School" className="h-16 w-auto object-contain" />
-                  ) : r.to === "Sankara Eye Hospital" ? (
-                    <img src={sankaraLogo} alt="Sankara Eye Hospital" className="h-16 w-auto object-contain" />
-                  ) : r.to === "Lions Eye Bank" ? (
-                    <img src={lionsLogo} alt="Lions Eye Bank" className="h-16 w-auto object-contain" />
-                  ) : r.to === "Jain Mission Trust" ? (
-                    <img src={jainLogo} alt="Jain Mission Trust" className="h-16 w-auto object-contain" />
-                  ) : r.to === "Vivekananda Education Society" ? (
-                    <img src={vesLogo} alt="Vivekananda Education Society" className="h-16 w-auto object-contain" />
-                  ) : r.to === "Adinath Jain Trust" ? (
-                    <img src={adinathLogo} alt="Adinath Jain Trust" className="h-16 w-auto object-contain" />
-                  ) : (
-                    <Award size={20} className="text-[var(--brand-gold)]" />
-                  )}
-                  <div className="mt-3 text-[10px] uppercase tracking-wider text-foreground/55">{r.tier}</div>
-                  <div className="mt-1 text-xs text-[var(--brand-brown)] leading-tight">{r.to}</div>
                 </div>
               </Reveal>
             ))}
@@ -761,9 +800,9 @@ function Donate() {
               <dl className="mt-8 divide-y divide-border">
                 {[
                   ["Account Name", "Sohan Kanwar Mangilal Tater Charitable Trust"],
-                  ["Bank Name", "[To be updated]"],
-                  ["Account Number", "[To be updated]"],
-                  ["IFSC", "[To be updated]"],
+                  ["Bank Name", "RBL Bank"],
+                  ["Account Number", "309841435214"],
+                  ["IFSC", "RATN0000187"],
                 ].map(([k, v]) => (
                   <div key={k} className="py-4 flex justify-between gap-6">
                     <dt className="text-sm text-foreground/55 uppercase tracking-wider">{k}</dt>

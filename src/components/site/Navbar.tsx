@@ -47,7 +47,7 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-        <a href="#home" className="flex items-center gap-3">
+        <a href="#home" className="flex items-center gap-3 outline-none">
           <img src={logoAsset} alt="Trust logo" className="h-11 w-11 rounded-full object-cover" />
           <div className="hidden sm:block leading-tight">
             <div className="font-display font-semibold text-[var(--brand-brown)] text-[19px]">
@@ -64,7 +64,7 @@ export function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors ${
+                className={`relative px-4 py-2 text-sm font-medium outline-none transition-colors ${
                   active === l.href.slice(1)
                     ? "text-[var(--brand-green)]"
                     : "text-foreground/70 hover:text-foreground"
@@ -85,13 +85,13 @@ export function Navbar() {
         <div className="hidden lg:flex items-center gap-3">
           <a
             href="#contact"
-            className="inline-flex items-center rounded-full border border-[var(--brand-brown)]/20 px-5 py-2.5 text-sm font-medium text-[var(--brand-brown)] transition hover:bg-[var(--brand-brown)]/5"
+            className="inline-flex items-center rounded-full border border-[var(--brand-brown)]/20 px-5 py-2.5 text-sm font-medium text-[var(--brand-brown)] outline-none transition hover:bg-[var(--brand-brown)]/5 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:ring-[var(--brand-brown)]/40"
           >
             Contact us
           </a>
           <a
             href="#donate"
-            className="inline-flex items-center rounded-full bg-[var(--brand-green)] px-5 py-2.5 text-sm font-medium text-white transition-all hover:opacity-90 hover:shadow-lg"
+            className="inline-flex items-center rounded-full bg-[var(--brand-green)] px-5 py-2.5 text-sm font-medium text-white outline-none transition-all hover:opacity-90 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:ring-[var(--brand-green)]"
           >
             Donate
           </a>
