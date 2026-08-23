@@ -246,13 +246,13 @@ function Index() {
 
 function Hero() {
   return (
-    <section id="home" className="relative min-h-dvh hero-backdrop flex items-center pt-20 pb-16 sm:pt-28 sm:pb-20 overflow-hidden">
+    <section id="home" className="relative hero-backdrop flex items-center pt-24 pb-16 sm:pt-28 sm:pb-20 [@media(min-width:640px)_and_(min-aspect-ratio:1/1)]:min-h-dvh overflow-hidden">
       {/* Subtle ornamental shapes */}
       <div className="pointer-events-none absolute -top-32 -right-32 h-[480px] w-[480px] rounded-full bg-[var(--brand-gold)]/30 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-40 -left-32 h-[420px] w-[420px] rounded-full bg-[var(--brand-green)]/10 blur-3xl" />
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-center">
-        <div className="lg:col-span-8">
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10 grid md:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="md:col-span-8">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -310,15 +310,15 @@ function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.4 }}
-          className="hidden lg:flex lg:col-span-4 justify-center"
+          className="hidden md:flex md:col-span-4 justify-center"
         >
-          <div className="relative isolate flex h-96 w-96 items-center justify-center">
-            <div className="absolute inset-6 rounded-full bg-[var(--brand-gold)]/35 blur-3xl" />
-            <div className="absolute inset-12 rounded-full border border-[var(--brand-gold)]/35 bg-background/20 shadow-[0_40px_110px_-70px_rgba(47,118,59,0.8)]" />
+          <div className="relative isolate flex h-64 w-64 lg:h-96 lg:w-96 items-center justify-center">
+            <div className="absolute inset-4 lg:inset-6 rounded-full bg-[var(--brand-gold)]/35 blur-3xl" />
+            <div className="absolute inset-8 lg:inset-12 rounded-full border border-[var(--brand-gold)]/35 bg-background/20 shadow-[0_40px_110px_-70px_rgba(47,118,59,0.8)]" />
             <img
               src={logo1}
               alt="Trust emblem"
-              className="relative h-80 w-80 object-contain contrast-110 saturate-110 drop-shadow-[0_22px_34px_rgba(71,54,64,0.14)]"
+              className="relative h-52 w-52 lg:h-80 lg:w-80 object-contain contrast-110 saturate-110 drop-shadow-[0_22px_34px_rgba(71,54,64,0.14)]"
             />
           </div>
         </motion.div>
@@ -359,10 +359,10 @@ function Impact() {
           </div>
         </Reveal>
 
-        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden border border-border">
+        <div className="mt-16 flex flex-wrap rounded-2xl overflow-hidden border border-border">
           {impactStats.map((s, i) => (
-            <Reveal key={i} delay={i * 0.04}>
-              <div className="bg-background p-5 sm:p-8 lg:p-10 h-full group hover:bg-[var(--surface)] active:bg-[var(--surface)] transition-colors">
+            <Reveal key={i} delay={i * 0.04} className="grow min-w-0 basis-full sm:basis-1/2 lg:basis-1/3">
+              <div className="bg-background border-r border-b border-border p-5 sm:p-8 lg:p-10 h-full group hover:bg-[var(--surface)] active:bg-[var(--surface)] transition-colors">
                 <div className="font-sans text-3xl sm:text-4xl lg:text-[2.5rem] text-[var(--brand-brown)] leading-none">
                   <Counter
                     to={s.value}
@@ -394,7 +394,7 @@ function Founders() {
           </h2>
         </Reveal>
 
-        <div className="mt-14 flex flex-col sm:flex-row flex-wrap justify-center gap-10 sm:gap-14">
+        <div className="mt-14 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-10 sm:gap-14">
           {founders.map((f, i) => (
             <Reveal key={f.name} delay={i * 0.1}>
               <div className="flex flex-col items-center text-center w-48">
@@ -434,11 +434,11 @@ function OurWork() {
           <div className="flex flex-col gap-6">
             <div>
               <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Our Work</p>
-              <h2 className="mt-4 font-display text-2xl sm:text-4xl lg:text-6xl leading-[1.05] whitespace-nowrap">
+              <h2 className="mt-4 font-display text-2xl sm:text-4xl lg:text-6xl leading-[1.05] text-balance">
                 Programmes that move quietly, reach widely.
               </h2>
             </div>
-            <div className="flex flex-nowrap gap-2 overflow-x-auto -mx-1 px-1 sm:mx-0 sm:px-0">
+            <div className="flex flex-wrap gap-2">
               {tabs.map(({ id, icon: Icon, label }) => (
                 <button
                   key={id}
@@ -645,7 +645,7 @@ function DeepDive() {
           </Reveal>
           <div className="mt-12 flex flex-wrap rounded-2xl overflow-hidden border border-border">
             {partners.map((p, i) => (
-              <Reveal key={p.name} delay={i * 0.03} className="grow basis-1/2 sm:basis-1/3 lg:basis-1/4">
+              <Reveal key={p.name} delay={i * 0.03} className="grow min-w-0 basis-1/2 sm:basis-1/3 lg:basis-1/4">
                 <div className="bg-background border-r border-b border-border p-4 sm:p-6 lg:p-8 h-full flex items-center justify-center text-center min-h-28">
                   <div>
                     {p.logo ? (
@@ -701,20 +701,16 @@ function Gallery() {
           </div>
         </Reveal>
 
-        <motion.div
-          layout
-          className="mt-14 columns-2 lg:columns-3 gap-5 [column-fill:_balance]"
-        >
-          <AnimatePresence>
+        <div className="mt-14 columns-2 lg:columns-3 gap-5 [column-fill:_balance]">
+          <AnimatePresence mode="popLayout">
             {items.map((g, i) => (
               <motion.button
-                layout
                 key={`${g.caption}-${i}`}
                 data-cursor="plain"
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.35, delay: i * 0.03 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2, delay: i * 0.02 }}
                 onClick={() => setActive(i)}
                 className={`mb-5 w-full break-inside-avoid relative overflow-hidden rounded-2xl ${g.img ? "bg-[var(--surface)]" : `bg-gradient-to-br ${g.tone}`} group block touch-manipulation`}
                 style={{ height: g.h }}
@@ -737,7 +733,7 @@ function Gallery() {
               </motion.button>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
 
       <AnimatePresence>
