@@ -643,10 +643,10 @@ function DeepDive() {
               </div>
             </div>
           </Reveal>
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden border border-border">
+          <div className="mt-12 flex flex-wrap rounded-2xl overflow-hidden border border-border">
             {partners.map((p, i) => (
-              <Reveal key={p.name} delay={i * 0.03}>
-                <div className="bg-background p-4 sm:p-6 lg:p-8 h-full flex items-center justify-center text-center min-h-28">
+              <Reveal key={p.name} delay={i * 0.03} className="grow basis-1/2 sm:basis-1/3 lg:basis-1/4">
+                <div className="bg-background border-r border-b border-border p-4 sm:p-6 lg:p-8 h-full flex items-center justify-center text-center min-h-28">
                   <div>
                     {p.logo ? (
                       <img src={p.logo} alt={p.name} className="mx-auto h-16 w-auto object-contain mb-2" />
