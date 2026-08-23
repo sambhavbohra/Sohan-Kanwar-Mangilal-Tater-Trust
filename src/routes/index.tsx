@@ -11,7 +11,6 @@ import {
   Heart,
   Shield,
   HandHeart,
-  Sparkles,
   Eye,
   Building2,
   MapPin,
@@ -19,6 +18,9 @@ import {
   Mail,
   Clock,
   X,
+  LayoutGrid,
+  Landmark,
+  Infinity,
 } from "lucide-react";
 import { IndiaMap, places } from "@/components/IndiaMap";
 
@@ -56,6 +58,15 @@ import prostheticsDistributionAdinathJainTrustImg from "@/assets/gallery-prosthe
 import prostheticsDistributionImg from "@/assets/gallery-prosthetics-distribution.jpeg";
 import roomDonationDharamshalaLodgingImg from "@/assets/gallery-room-donation-dharamshala-lodging.jpeg";
 import sankaraEyeHospitalBlockImg from "@/assets/gallery-sankara-eye-hospital-block.jpeg";
+import tenthScholarshipDistributionImg from "@/assets/gallery-10th-scholarship-distribution-ceremony.jpeg";
+import eleventhScholarshipDistributionImg from "@/assets/gallery-11th-scholarship-distribution-ceremony.jpeg";
+import thirteenthScholarshipDistributionImg from "@/assets/gallery-13th-scholarship-distribution-439-students.jpeg";
+import twentyTwoLakhScholarshipDistributionImg from "@/assets/gallery-22-lakh-scholarship-distribution-ceremony.jpeg";
+import inaugurationVivekanandaVidyalayaImg from "@/assets/gallery-inauguration-vivekananda-vidyalaya.jpeg";
+import maternityChildCareHomeHandoverImg from "@/assets/gallery-maternity-child-care-home-handover.jpeg";
+import maternityHomePlaquePresentationImg from "@/assets/gallery-maternity-home-plaque-presentation.jpeg";
+import maternityHospitalImg from "@/assets/gallery-maternity-hospital.jpeg";
+import vivekanandaVidyalayaImg from "@/assets/gallery-vivekananda-vidyalaya.jpeg";
 import mangilalChandjiTaterImg from "@/assets/founder-mangilal-chandji-tater.jpeg";
 import sohanKanwarTaterImg from "@/assets/founder-sohan-kanwar-tater.jpeg";
 import mangalChandTaterImg from "@/assets/founder-mangal-chand-tater.jpeg";
@@ -105,7 +116,7 @@ const values = [
   { icon: Users, title: "Community", text: "With and for our people." },
   { icon: HandHeart, title: "Service", text: "Quiet. Consistent. Unwavering." },
   { icon: Eye, title: "Transparency", text: "Open books, open hearts." },
-  { icon: Sparkles, title: "Continuity", text: "A legacy for generations." },
+  { icon: Infinity, title: "Continuity", text: "A legacy for generations." },
 ];
 
 type Project = { name: string; location?: string; impact?: string; desc: string };
@@ -143,7 +154,7 @@ const work: Record<"Education" | "Healthcare" | "Community" | "Animal", Project[
 };
 
 const timeline = [
-  { year: "2011", title: "Trust Established", text: "Sohan Kanwar Mangilal Tater Charitable Trust begins its journey of service.", icon: Sparkles },
+  { year: "2011", title: "Trust Established", text: "Sohan Kanwar Mangilal Tater Charitable Trust begins its journey of service.", icon: Landmark },
   { year: "2012–21", title: "Growing Years", text: "Expanding in education and healthcare through annual scholarships and eye camps.", icon: ArrowUpRight },
   {
     year: "2022",
@@ -196,28 +207,43 @@ const partners = [
 ];
 
 /* Gallery */
-const galleryCats = ["All", "Eye Camps", "Healthcare", "Scholarship Events", "Maternity Hospital", "Gaushala", "Community Events", "Infrastructure"] as const;
-type GalleryCat = (typeof galleryCats)[number];
+const galleryTabs = [
+  { id: "All" as const, icon: LayoutGrid, label: "All" },
+  { id: "Education" as const, icon: GraduationCap, label: "Education" },
+  { id: "Healthcare" as const, icon: Stethoscope, label: "Healthcare" },
+  { id: "Community" as const, icon: Users, label: "Community" },
+  { id: "Animal Welfare" as const, icon: PawPrint, label: "Animal Welfare" },
+];
+type GalleryCat = (typeof galleryTabs)[number]["id"];
 const gallery: { cat: Exclude<GalleryCat, "All">; caption: string; h: number; tone: string; img: string }[] = [
-  { cat: "Eye Camps", caption: "Free Eye Screening Camp Chennai", h: 320, tone: "from-[#1E3A5F] to-[#142943]", img: freeEyeScreeningCampChennaiImg },
-  { cat: "Scholarship Events", caption: "Annual Scholarship Ceremony Chennai", h: 420, tone: "from-[#800000] to-[#4d0000]", img: annualScholarshipCeremonyChennaiImg },
-  { cat: "Maternity Hospital", caption: "Maternity Ward Inauguration", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: maternityWardInaugurationImg },
-  { cat: "Gaushala", caption: "Khwaspura Gaushala Shed", h: 360, tone: "from-[#8FA68E] to-[#4f6651]", img: khwaspuraGaushalaShedImg },
-  { cat: "Infrastructure", caption: "Sankara Eye Hospital Block", h: 400, tone: "from-[#800000] to-[#3d0000]", img: sankaraEyeHospitalBlockImg },
-  { cat: "Eye Camps", caption: "Cataract Surgery Follow-Up", h: 280, tone: "from-[#1E3A5F] to-[#142943]", img: cataractSurgeryFollowUpImg },
-  { cat: "Community Events", caption: "Food Distribution Drive", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveImg },
-  { cat: "Infrastructure", caption: "Room Donation To Dharamshala Lodging", h: 320, tone: "from-[#1E3A5F] to-[#142943]", img: roomDonationDharamshalaLodgingImg },
-  { cat: "Maternity Hospital", caption: "Newborn Care Unit", h: 320, tone: "from-[#C9A23A] to-[#8a6e1f]", img: newbornCareUnitImg },
-  { cat: "Gaushala", caption: "Chaara Godown Nagaur", h: 340, tone: "from-[#8FA68E] to-[#4f6651]", img: chaaraGodownNagaurImg },
-  { cat: "Community Events", caption: "Food Distribution Drive", h: 420, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveNewImg },
-  { cat: "Community Events", caption: "Food Distribution Drive With Akshaya Trust", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveAkshayaTrustImg },
+  { cat: "Healthcare", caption: "Free Eye Screening Camp Chennai", h: 320, tone: "from-[#1E3A5F] to-[#142943]", img: freeEyeScreeningCampChennaiImg },
+  { cat: "Education", caption: "Annual Scholarship Ceremony Chennai", h: 420, tone: "from-[#800000] to-[#4d0000]", img: annualScholarshipCeremonyChennaiImg },
+  { cat: "Healthcare", caption: "Maternity Ward Inauguration", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: maternityWardInaugurationImg },
+  { cat: "Animal Welfare", caption: "Khwaspura Gaushala Shed", h: 360, tone: "from-[#8FA68E] to-[#4f6651]", img: khwaspuraGaushalaShedImg },
+  { cat: "Healthcare", caption: "Sankara Eye Hospital Block", h: 400, tone: "from-[#800000] to-[#3d0000]", img: sankaraEyeHospitalBlockImg },
+  { cat: "Healthcare", caption: "Cataract Surgery Follow-Up", h: 280, tone: "from-[#1E3A5F] to-[#142943]", img: cataractSurgeryFollowUpImg },
+  { cat: "Community", caption: "Food Distribution Drive", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveImg },
+  { cat: "Community", caption: "Room Donation To Dharamshala Lodging", h: 320, tone: "from-[#1E3A5F] to-[#142943]", img: roomDonationDharamshalaLodgingImg },
+  { cat: "Healthcare", caption: "Newborn Care Unit", h: 320, tone: "from-[#C9A23A] to-[#8a6e1f]", img: newbornCareUnitImg },
+  { cat: "Animal Welfare", caption: "Chaara Godown Nagaur", h: 340, tone: "from-[#8FA68E] to-[#4f6651]", img: chaaraGodownNagaurImg },
+  { cat: "Community", caption: "Food Distribution Drive", h: 420, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveNewImg },
+  { cat: "Community", caption: "Food Distribution Drive With Akshaya Trust", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveAkshayaTrustImg },
   { cat: "Healthcare", caption: "Prosthetics Distribution", h: 300, tone: "from-[#1E3A5F] to-[#142943]", img: prostheticsDistributionImg },
-  { cat: "Infrastructure", caption: "Hall Donated In Marudhar Merta City", h: 320, tone: "from-[#800000] to-[#3d0000]", img: hallDonatedMarudharMertaCityImg },
-  { cat: "Infrastructure", caption: "MoU Between Our Trust And Sewa Bharti Tamil Nadu For Multi-Specialty Hospital", h: 420, tone: "from-[#800000] to-[#3d0000]", img: mouSewaBhartiMultiSpecialtyHospitalImg },
-  { cat: "Community Events", caption: "Food Distribution", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionImg },
-  { cat: "Eye Camps", caption: "Cataract Surgery With Chennai Metro Mahaveer", h: 340, tone: "from-[#1E3A5F] to-[#142943]", img: cataractSurgeryChennaiMetroMahaveerImg },
-  { cat: "Community Events", caption: "Awarded Rajasthan Shree By Rajasthan Sangh Chennai", h: 320, tone: "from-[#800000] to-[#4d0000]", img: awardedRajasthanShreeImg },
+  { cat: "Community", caption: "Hall Donated In Marudhar Merta City", h: 320, tone: "from-[#800000] to-[#3d0000]", img: hallDonatedMarudharMertaCityImg },
+  { cat: "Healthcare", caption: "MoU Between Our Trust And Sewa Bharti Tamil Nadu For Multi-Specialty Hospital", h: 420, tone: "from-[#800000] to-[#3d0000]", img: mouSewaBhartiMultiSpecialtyHospitalImg },
+  { cat: "Community", caption: "Food Distribution", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionImg },
+  { cat: "Healthcare", caption: "Cataract Surgery With Chennai Metro Mahaveer", h: 340, tone: "from-[#1E3A5F] to-[#142943]", img: cataractSurgeryChennaiMetroMahaveerImg },
+  { cat: "Community", caption: "Awarded Rajasthan Shree By Rajasthan Sangh Chennai", h: 320, tone: "from-[#800000] to-[#4d0000]", img: awardedRajasthanShreeImg },
   { cat: "Healthcare", caption: "Prosthetics Distribution With Adinath Jain Trust Chennai", h: 360, tone: "from-[#1E3A5F] to-[#142943]", img: prostheticsDistributionAdinathJainTrustImg },
+  { cat: "Education", caption: "10th Scholarship Distribution Ceremony", h: 340, tone: "from-[#800000] to-[#4d0000]", img: tenthScholarshipDistributionImg },
+  { cat: "Education", caption: "11th Scholarship Distribution Ceremony", h: 380, tone: "from-[#1E3A5F] to-[#142943]", img: eleventhScholarshipDistributionImg },
+  { cat: "Education", caption: "13th Scholarship Distribution To 439 Students", h: 420, tone: "from-[#C9A23A] to-[#8a6e1f]", img: thirteenthScholarshipDistributionImg },
+  { cat: "Education", caption: "22 Lakh Scholarship Distribution Ceremony", h: 300, tone: "from-[#800000] to-[#3d0000]", img: twentyTwoLakhScholarshipDistributionImg },
+  { cat: "Education", caption: "Inauguration Of Vivekananda Vidyalaya", h: 360, tone: "from-[#1E3A5F] to-[#142943]", img: inaugurationVivekanandaVidyalayaImg },
+  { cat: "Education", caption: "Vivekananda Vidyalaya", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: vivekanandaVidyalayaImg },
+  { cat: "Healthcare", caption: "Maternity And Child Care Home Handover", h: 340, tone: "from-[#800000] to-[#4d0000]", img: maternityChildCareHomeHandoverImg },
+  { cat: "Healthcare", caption: "Maternity Home Plaque Presentation", h: 420, tone: "from-[#1E3A5F] to-[#142943]", img: maternityHomePlaquePresentationImg },
+  { cat: "Healthcare", caption: "Maternity Hospital", h: 320, tone: "from-[#C9A23A] to-[#8a6e1f]", img: maternityHospitalImg },
 ];
 
 /* ───────────────────────── PAGE ───────────────────────── */
@@ -676,25 +702,26 @@ function Gallery() {
     <section id="gallery" className="section-pad bg-[var(--surface)]">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <Reveal>
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <div className="max-w-2xl">
+          <div className="flex flex-col gap-6">
+            <div>
               <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Gallery</p>
               <h2 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-balance">
                 Moments from the field.
               </h2>
             </div>
             <div className="flex flex-wrap gap-2">
-              {galleryCats.map((c) => (
+              {galleryTabs.map(({ id, icon: Icon, label }) => (
                 <button
-                  key={c}
-                  onClick={() => setCat(c)}
-                  className={`px-4 py-2 rounded-full text-xs font-medium transition touch-manipulation ${
-                    cat === c
+                  key={id}
+                  onClick={() => setCat(id)}
+                  className={`inline-flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition touch-manipulation ${
+                    cat === id
                       ? "bg-[var(--brand-brown)] text-white"
                       : "bg-background border border-border text-foreground/70 hover:text-foreground active:text-foreground"
                   }`}
                 >
-                  {c}
+                  <Icon size={16} />
+                  {label}
                 </button>
               ))}
             </div>
