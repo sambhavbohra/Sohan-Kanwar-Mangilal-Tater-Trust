@@ -47,7 +47,7 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-        <a href="#home" className="flex items-center gap-3 outline-none">
+        <a href="#home" data-cursor="plain" className="flex items-center gap-3 outline-none">
           <img src={logoAsset} alt="Trust logo" className="h-11 w-11 rounded-full object-cover" />
           <div className="hidden sm:block leading-tight">
             <div className="font-display font-semibold text-[var(--brand-brown)] text-[19px]">
@@ -64,6 +64,7 @@ export function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
+                data-cursor="plain"
                 className={`relative px-4 py-2 text-sm font-medium outline-none transition-colors ${
                   active === l.href.slice(1)
                     ? "text-[var(--brand-green)]"

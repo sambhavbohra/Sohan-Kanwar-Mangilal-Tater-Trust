@@ -34,6 +34,9 @@ import lionsLogo from "@/assets/lions-logo.png";
 import jainLogo from "@/assets/jain-logo.png";
 import vesLogo from "@/assets/ves-logo.png";
 import adinathLogo from "@/assets/adinath-logo.png";
+import rmdCareTrustLogo from "@/assets/rmd-care-trust-logo.jpeg";
+import sevaBharathiLogo from "@/assets/seva-bharathi-logo.jpeg";
+import chennaiMetroMahaveerLogo from "@/assets/chennai-metro-mahaveer-logo.jpeg";
 import annualScholarshipCeremonyChennaiImg from "@/assets/gallery-annual-scholarship-ceremony-chennai.jpeg";
 import awardedRajasthanShreeImg from "@/assets/gallery-awarded-rajasthan-shree-rajasthan-sangh-chennai.jpeg";
 import cataractSurgeryChennaiMetroMahaveerImg from "@/assets/gallery-cataract-surgery-chennai-metro-mahaveer.jpeg";
@@ -187,6 +190,9 @@ const partners = [
   { name: "Jain Mission Trust", logo: jainLogo },
   { name: "Vivekananda Education Society", logo: vesLogo },
   { name: "Adinath Jain Trust", logo: adinathLogo },
+  { name: "RMD Care Trust", logo: rmdCareTrustLogo },
+  { name: "Seva Bharathi", logo: sevaBharathiLogo },
+  { name: "Chennai Metro Mahaveer", logo: chennaiMetroMahaveerLogo },
 ];
 
 /* Gallery */
@@ -463,6 +469,7 @@ function OurWork() {
             {items.map((p, i) => (
               <motion.div
                 key={p.name}
+                data-cursor="magnetic"
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
@@ -627,7 +634,7 @@ function DeepDive() {
         </div>
 
         {/* Partners */}
-        <div>
+        <div id="recognition" className="scroll-mt-24">
           <Reveal>
             <div className="flex items-end justify-between gap-6 flex-wrap">
               <div>
@@ -703,6 +710,7 @@ function Gallery() {
               <motion.button
                 layout
                 key={`${g.caption}-${i}`}
+                data-cursor="plain"
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
@@ -741,7 +749,7 @@ function Gallery() {
             className="fixed inset-0 z-[60] bg-black/85 backdrop-blur flex items-center justify-center p-6"
             onClick={() => setActive(null)}
           >
-            <button onClick={() => setActive(null)} aria-label="Close" className="absolute top-6 right-6 text-white/70 hover:text-white">
+            <button onClick={() => setActive(null)} aria-label="Close" data-cursor="plain" className="absolute top-6 right-6 text-white/70 hover:text-white">
               <X size={28} />
             </button>
             <motion.div

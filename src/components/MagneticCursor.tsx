@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 const TARGET_SELECTOR = "a, button, [role='button'], input, textarea, select, [data-cursor='magnetic']";
+const IGNORE_SELECTOR = "[data-cursor='plain']";
 const BASE_SIZE = 14;
 
 type StuckBox = { left: number; top: number; width: number; height: number; radius: string };
@@ -41,7 +42,8 @@ export function MagneticCursor() {
     };
 
     const onOver = (e: PointerEvent) => {
-      const el = (e.target as HTMLElement)?.closest<HTMLElement>(TARGET_SELECTOR);
+      const target = (e.target as HTMLElement)?.closest<HTMLElement>(TARGET_SELECTOR);
+      const el = target?.closest(IGNORE_SELECTOR) ? null : target;
       if (el === targetRef.current) return;
       targetRef.current = el;
 
