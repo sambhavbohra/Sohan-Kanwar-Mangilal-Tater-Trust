@@ -21,6 +21,8 @@ import {
   LayoutGrid,
   Landmark,
   Infinity,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { IndiaMap, places } from "@/components/IndiaMap";
 
@@ -39,6 +41,7 @@ import adinathLogo from "@/assets/adinath-logo.png";
 import rmdCareTrustLogo from "@/assets/rmd-care-trust-logo.jpeg";
 import sevaBharathiLogo from "@/assets/seva-bharathi-logo.jpeg";
 import chennaiMetroMahaveerLogo from "@/assets/chennai-metro-mahaveer-logo.jpeg";
+import rajasthaniAssociationTnLogo from "@/assets/rajasthani-association-tn-logo.png";
 import annualScholarshipCeremonyChennaiImg from "@/assets/gallery-annual-scholarship-ceremony-chennai.jpeg";
 import awardedRajasthanShreeImg from "@/assets/gallery-awarded-rajasthan-shree-rajasthan-sangh-chennai.jpeg";
 import cataractSurgeryChennaiMetroMahaveerImg from "@/assets/gallery-cataract-surgery-chennai-metro-mahaveer.jpeg";
@@ -204,6 +207,7 @@ const partners = [
   { name: "RMD Care Trust", logo: rmdCareTrustLogo },
   { name: "Seva Bharathi", logo: sevaBharathiLogo },
   { name: "Chennai Metro Mahaveer", logo: chennaiMetroMahaveerLogo },
+  { name: "Rajasthani Association Tamil Nadu", logo: rajasthaniAssociationTnLogo },
 ];
 
 /* Gallery */
@@ -496,8 +500,8 @@ function OurWork() {
               <motion.div
                 key={p.name}
                 data-cursor="magnetic"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
                 className="group relative bg-background rounded-2xl border border-border p-4 hover:shadow-[0_20px_60px_-30px_rgba(0,0,0,0.2)] hover:-translate-y-1 active:shadow-[0_20px_60px_-30px_rgba(0,0,0,0.2)] active:-translate-y-1 transition-all duration-500 touch-manipulation"
               >
@@ -698,6 +702,17 @@ function Gallery() {
   const [active, setActive] = useState<number | null>(null);
   const items = cat === "All" ? gallery.filter((g) => !g.hideFromAll) : gallery.filter((g) => g.cat === cat);
 
+  useEffect(() => {
+    if (active === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") setActive((i) => (i === null || i >= items.length - 1 ? i : i + 1));
+      if (e.key === "ArrowLeft") setActive((i) => (i === null || i <= 0 ? i : i - 1));
+      if (e.key === "Escape") setActive(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [active, items.length]);
+
   return (
     <section id="gallery" className="section-pad bg-[var(--surface)]">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
@@ -775,6 +790,32 @@ function Gallery() {
             <button onClick={() => setActive(null)} aria-label="Close" data-cursor="plain" className="absolute top-6 right-6 text-white/70 hover:text-white">
               <X size={28} />
             </button>
+            {active > 0 && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActive((i) => (i === null || i <= 0 ? i : i - 1));
+                }}
+                aria-label="Previous photo"
+                data-cursor="plain"
+                className="absolute z-10 left-3 sm:left-6 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-2 text-white/80 hover:bg-white/20 hover:text-white transition touch-manipulation"
+              >
+                <ChevronLeft size={24} />
+              </button>
+            )}
+            {active < items.length - 1 && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActive((i) => (i === null || i >= items.length - 1 ? i : i + 1));
+                }}
+                aria-label="Next photo"
+                data-cursor="plain"
+                className="absolute z-10 right-3 sm:right-6 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-2 text-white/80 hover:bg-white/20 hover:text-white transition touch-manipulation"
+              >
+                <ChevronRight size={24} />
+              </button>
+            )}
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -1030,6 +1071,9 @@ function Footer() {
           <div className="text-xs uppercase tracking-[0.2em] text-[var(--brand-gold)]">Reach</div>
           <ul className="mt-5 space-y-2 text-sm">
             <li>Chennai, Tamil Nadu</li>
+            <li>Coimbatore, Tamil Nadu</li>
+            <li>Bengaluru, Karnataka</li>
+            <li>Jaipur, Rajasthan</li>
           </ul>
         </div>
       </div>
