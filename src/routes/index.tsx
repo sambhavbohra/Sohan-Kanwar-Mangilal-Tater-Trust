@@ -215,35 +215,35 @@ const galleryTabs = [
   { id: "Animal Welfare" as const, icon: PawPrint, label: "Animal Welfare" },
 ];
 type GalleryCat = (typeof galleryTabs)[number]["id"];
-const gallery: { cat: Exclude<GalleryCat, "All">; caption: string; h: number; tone: string; img: string }[] = [
+const gallery: { cat: Exclude<GalleryCat, "All">; caption: string; h: number; tone: string; img: string; hideFromAll?: boolean }[] = [
   { cat: "Healthcare", caption: "Free Eye Screening Camp Chennai", h: 320, tone: "from-[#1E3A5F] to-[#142943]", img: freeEyeScreeningCampChennaiImg },
   { cat: "Education", caption: "Annual Scholarship Ceremony Chennai", h: 420, tone: "from-[#800000] to-[#4d0000]", img: annualScholarshipCeremonyChennaiImg },
   { cat: "Healthcare", caption: "Maternity Ward Inauguration", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: maternityWardInaugurationImg },
-  { cat: "Animal Welfare", caption: "Khwaspura Gaushala Shed", h: 360, tone: "from-[#8FA68E] to-[#4f6651]", img: khwaspuraGaushalaShedImg },
+  { cat: "Animal Welfare", caption: "Khwaspura Gaushala Shed", h: 360, tone: "from-[#8FA68E] to-[#4f6651]", img: khwaspuraGaushalaShedImg, hideFromAll: true },
   { cat: "Healthcare", caption: "Sankara Eye Hospital Block", h: 400, tone: "from-[#800000] to-[#3d0000]", img: sankaraEyeHospitalBlockImg },
   { cat: "Healthcare", caption: "Cataract Surgery Follow-Up", h: 280, tone: "from-[#1E3A5F] to-[#142943]", img: cataractSurgeryFollowUpImg },
-  { cat: "Community", caption: "Food Distribution Drive", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveImg },
+  { cat: "Community", caption: "Food Distribution Drive", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveImg, hideFromAll: true },
   { cat: "Community", caption: "Room Donation To Dharamshala Lodging", h: 320, tone: "from-[#1E3A5F] to-[#142943]", img: roomDonationDharamshalaLodgingImg },
-  { cat: "Healthcare", caption: "Newborn Care Unit", h: 320, tone: "from-[#C9A23A] to-[#8a6e1f]", img: newbornCareUnitImg },
+  { cat: "Healthcare", caption: "Newborn Care Unit", h: 320, tone: "from-[#C9A23A] to-[#8a6e1f]", img: newbornCareUnitImg, hideFromAll: true },
   { cat: "Animal Welfare", caption: "Chaara Godown Nagaur", h: 340, tone: "from-[#8FA68E] to-[#4f6651]", img: chaaraGodownNagaurImg },
   { cat: "Community", caption: "Food Distribution Drive", h: 420, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveNewImg },
   { cat: "Community", caption: "Food Distribution Drive With Akshaya Trust", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveAkshayaTrustImg },
-  { cat: "Healthcare", caption: "Prosthetics Distribution", h: 300, tone: "from-[#1E3A5F] to-[#142943]", img: prostheticsDistributionImg },
-  { cat: "Community", caption: "Hall Donated In Marudhar Merta City", h: 320, tone: "from-[#800000] to-[#3d0000]", img: hallDonatedMarudharMertaCityImg },
+  { cat: "Healthcare", caption: "Prosthetics Distribution", h: 300, tone: "from-[#1E3A5F] to-[#142943]", img: prostheticsDistributionImg, hideFromAll: true },
+  { cat: "Community", caption: "Hall Donated In Marudhar Merta City", h: 320, tone: "from-[#800000] to-[#3d0000]", img: hallDonatedMarudharMertaCityImg, hideFromAll: true },
   { cat: "Healthcare", caption: "MoU Between Our Trust And Sewa Bharti Tamil Nadu For Multi-Specialty Hospital", h: 420, tone: "from-[#800000] to-[#3d0000]", img: mouSewaBhartiMultiSpecialtyHospitalImg },
-  { cat: "Community", caption: "Food Distribution", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionImg },
-  { cat: "Healthcare", caption: "Cataract Surgery With Chennai Metro Mahaveer", h: 340, tone: "from-[#1E3A5F] to-[#142943]", img: cataractSurgeryChennaiMetroMahaveerImg },
+  { cat: "Community", caption: "Food Distribution", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionImg, hideFromAll: true },
+  { cat: "Healthcare", caption: "Cataract Surgery With Chennai Metro Mahaveer", h: 340, tone: "from-[#1E3A5F] to-[#142943]", img: cataractSurgeryChennaiMetroMahaveerImg, hideFromAll: true },
   { cat: "Community", caption: "Awarded Rajasthan Shree By Rajasthan Sangh Chennai", h: 320, tone: "from-[#800000] to-[#4d0000]", img: awardedRajasthanShreeImg },
   { cat: "Healthcare", caption: "Prosthetics Distribution With Adinath Jain Trust Chennai", h: 360, tone: "from-[#1E3A5F] to-[#142943]", img: prostheticsDistributionAdinathJainTrustImg },
-  { cat: "Education", caption: "10th Scholarship Distribution Ceremony", h: 340, tone: "from-[#800000] to-[#4d0000]", img: tenthScholarshipDistributionImg },
-  { cat: "Education", caption: "11th Scholarship Distribution Ceremony", h: 380, tone: "from-[#1E3A5F] to-[#142943]", img: eleventhScholarshipDistributionImg },
-  { cat: "Education", caption: "13th Scholarship Distribution To 439 Students", h: 420, tone: "from-[#C9A23A] to-[#8a6e1f]", img: thirteenthScholarshipDistributionImg },
-  { cat: "Education", caption: "22 Lakh Scholarship Distribution Ceremony", h: 300, tone: "from-[#800000] to-[#3d0000]", img: twentyTwoLakhScholarshipDistributionImg },
+  { cat: "Education", caption: "10th Scholarship Distribution Ceremony", h: 340, tone: "from-[#800000] to-[#4d0000]", img: tenthScholarshipDistributionImg, hideFromAll: true },
+  { cat: "Education", caption: "11th Scholarship Distribution Ceremony", h: 380, tone: "from-[#1E3A5F] to-[#142943]", img: eleventhScholarshipDistributionImg, hideFromAll: true },
+  { cat: "Education", caption: "13th Scholarship Distribution To 439 Students", h: 420, tone: "from-[#C9A23A] to-[#8a6e1f]", img: thirteenthScholarshipDistributionImg, hideFromAll: true },
+  { cat: "Education", caption: "22 Lakh Scholarship Distribution Ceremony", h: 300, tone: "from-[#800000] to-[#3d0000]", img: twentyTwoLakhScholarshipDistributionImg, hideFromAll: true },
   { cat: "Education", caption: "Inauguration Of Vivekananda Vidyalaya", h: 360, tone: "from-[#1E3A5F] to-[#142943]", img: inaugurationVivekanandaVidyalayaImg },
   { cat: "Education", caption: "Vivekananda Vidyalaya", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: vivekanandaVidyalayaImg },
   { cat: "Healthcare", caption: "Maternity And Child Care Home Handover", h: 340, tone: "from-[#800000] to-[#4d0000]", img: maternityChildCareHomeHandoverImg },
   { cat: "Healthcare", caption: "Maternity Home Plaque Presentation", h: 420, tone: "from-[#1E3A5F] to-[#142943]", img: maternityHomePlaquePresentationImg },
-  { cat: "Healthcare", caption: "Maternity Hospital", h: 320, tone: "from-[#C9A23A] to-[#8a6e1f]", img: maternityHospitalImg },
+  { cat: "Healthcare", caption: "Maternity Hospital", h: 320, tone: "from-[#C9A23A] to-[#8a6e1f]", img: maternityHospitalImg, hideFromAll: true },
 ];
 
 /* ───────────────────────── PAGE ───────────────────────── */
@@ -696,7 +696,7 @@ function DeepDive() {
 function Gallery() {
   const [cat, setCat] = useState<GalleryCat>("All");
   const [active, setActive] = useState<number | null>(null);
-  const items = cat === "All" ? gallery : gallery.filter((g) => g.cat === cat);
+  const items = cat === "All" ? gallery.filter((g) => !g.hideFromAll) : gallery.filter((g) => g.cat === cat);
 
   return (
     <section id="gallery" className="section-pad bg-[var(--surface)]">
