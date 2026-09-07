@@ -29,8 +29,8 @@ import { IndiaMap, places } from "@/components/IndiaMap";
 import { Navbar } from "@/components/site/Navbar";
 import { Reveal } from "@/components/site/Reveal";
 import { Counter } from "@/components/site/Counter";
-import logo1 from "@/assets/logo1.png";
-import logo2 from "@/assets/logo2.png";
+import trustLogo from "@/assets/trust-logo-upscaled.png";
+import heroImage from "@/assets/hero image.jpeg";
 import ryaLogo from "@/assets/rya-logo.png";
 import mahaveerLogo from "@/assets/mahaveer-logo.png";
 import sankaraLogo from "@/assets/sankara-logo.png";
@@ -70,6 +70,7 @@ import maternityChildCareHomeHandoverImg from "@/assets/gallery-maternity-child-
 import maternityHomePlaquePresentationImg from "@/assets/gallery-maternity-home-plaque-presentation.jpeg";
 import maternityHospitalImg from "@/assets/gallery-maternity-hospital.jpeg";
 import vivekanandaVidyalayaImg from "@/assets/gallery-vivekananda-vidyalaya.jpeg";
+import multispecialityHospitalBhoomiPoojaImg from "@/assets/Multispeciality Hospital Bhoomi Pooja.jpeg";
 import mangilalChandjiTaterImg from "@/assets/founder-mangilal-chandji-tater.jpeg";
 import sohanKanwarTaterImg from "@/assets/founder-sohan-kanwar-tater.jpeg";
 import mangalChandTaterImg from "@/assets/founder-mangal-chand-tater.jpeg";
@@ -235,6 +236,7 @@ const gallery: { cat: Exclude<GalleryCat, "All">; caption: string; h: number; to
   { cat: "Healthcare", caption: "Prosthetics Distribution", h: 300, tone: "from-[#1E3A5F] to-[#142943]", img: prostheticsDistributionImg, hideFromAll: true },
   { cat: "Community", caption: "Hall Donated In Marudhar Merta City", h: 320, tone: "from-[#800000] to-[#3d0000]", img: hallDonatedMarudharMertaCityImg, hideFromAll: true },
   { cat: "Healthcare", caption: "MoU Between Our Trust And Sewa Bharti Tamil Nadu For Multi-Specialty Hospital", h: 420, tone: "from-[#800000] to-[#3d0000]", img: mouSewaBhartiMultiSpecialtyHospitalImg },
+  { cat: "Healthcare", caption: "Multispeciality Hospital Bhoomi Pooja", h: 360, tone: "from-[#800000] to-[#3d0000]", img: multispecialityHospitalBhoomiPoojaImg },
   { cat: "Community", caption: "Food Distribution", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionImg, hideFromAll: true },
   { cat: "Healthcare", caption: "Cataract Surgery With Chennai Metro Mahaveer", h: 340, tone: "from-[#1E3A5F] to-[#142943]", img: cataractSurgeryChennaiMetroMahaveerImg, hideFromAll: true },
   { cat: "Community", caption: "Awarded Rajasthan Shree By Rajasthan Sangh Chennai", h: 320, tone: "from-[#800000] to-[#4d0000]", img: awardedRajasthanShreeImg },
@@ -277,6 +279,15 @@ function Index() {
 function Hero() {
   return (
     <section id="home" className="relative hero-backdrop flex items-center pt-24 pb-16 sm:pt-28 sm:pb-20 [@media(min-width:640px)_and_(min-aspect-ratio:1/1)]:min-h-dvh overflow-hidden">
+      <img
+        src={heroImage}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.60] [mask-image:radial-gradient(ellipse_at_center,black_12%,transparent_98%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,black_12%,transparent_98%)]"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/65 via-background/15 to-background/30" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/5 via-transparent to-background/45" />
+
       {/* Subtle ornamental shapes */}
       <div className="pointer-events-none absolute -top-32 -right-32 h-[480px] w-[480px] rounded-full bg-[var(--brand-gold)]/30 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-40 -left-32 h-[420px] w-[420px] rounded-full bg-[var(--brand-green)]/10 blur-3xl" />
@@ -346,7 +357,7 @@ function Hero() {
             <div className="absolute inset-4 lg:inset-6 rounded-full bg-[var(--brand-gold)]/35 blur-3xl" />
             <div className="absolute inset-8 lg:inset-12 rounded-full border border-[var(--brand-gold)]/35 bg-background/20 shadow-[0_40px_110px_-70px_rgba(47,118,59,0.8)]" />
             <img
-              src={logo1}
+              src={trustLogo}
               alt="Trust emblem"
               className="relative h-52 w-52 lg:h-80 lg:w-80 object-contain contrast-110 saturate-110 drop-shadow-[0_22px_34px_rgba(71,54,64,0.14)]"
             />
@@ -1045,7 +1056,7 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-6 lg:px-10 py-10 sm:py-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
         <div>
           <div className="flex items-center gap-3">
-            <img src={logo2} alt="Trust" className="h-12 w-12 rounded-full" />
+            <img src={trustLogo} alt="Trust" className="h-12 w-12 object-contain" />
             <div>
               <div className="font-display text-white text-lg leading-tight">Sohan Kanwar Mangilal Tater</div>
               <div className="text-xs uppercase tracking-[0.18em] text-white/50">Charitable Trust</div>

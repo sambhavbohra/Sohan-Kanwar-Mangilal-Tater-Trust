@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logoAsset from "@/assets/logo2.png";
+import logoAsset from "@/assets/trust-logo-upscaled.png";
 
 const links = [
   { href: "#impact", label: "Impact" },
@@ -48,7 +48,7 @@ export function Navbar() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <a href="#home" data-cursor="plain" className="flex items-center gap-3 outline-none">
-          <img src={logoAsset} alt="Trust logo" className="h-11 w-11 rounded-full object-cover" />
+          <img src={logoAsset} alt="Sohan Kanwar Mangilal Tater Charitable Trust logo" className="h-14 w-14 object-contain" />
           <div className="hidden sm:block leading-tight">
             <div className="font-display font-semibold text-[var(--brand-brown)] text-[19px]">
               Sohan Kanwar Mangilal Tater

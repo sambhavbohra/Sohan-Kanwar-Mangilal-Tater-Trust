@@ -10,7 +10,7 @@ import {
 import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import favicon from "../assets/logo2.png";
+import favicon from "../assets/trust-logo-upscaled.png";
 import { MagneticCursor } from "../components/MagneticCursor";
 
 function NotFoundComponent() {
