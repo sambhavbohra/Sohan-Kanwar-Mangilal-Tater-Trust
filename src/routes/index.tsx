@@ -71,6 +71,9 @@ import maternityHomePlaquePresentationImg from "@/assets/gallery-maternity-home-
 import maternityHospitalImg from "@/assets/gallery-maternity-hospital.jpeg";
 import vivekanandaVidyalayaImg from "@/assets/gallery-vivekananda-vidyalaya.jpeg";
 import multispecialityHospitalBhoomiPoojaImg from "@/assets/Multispeciality Hospital Bhoomi Pooja.jpeg";
+import bhoomiPoojaCeremonyVivekanandaImg from "@/assets/Bhoomi Pooja Ceremony Vivekananda Vidhyalaya.jpeg";
+import bhoomiPoojaCeremonyHospitalImg from "@/assets/Bhoomi Pooja Cermony Multi-speciality Hospital.jpeg";
+import cattleFeedingGaushalaImg from "@/assets/Cattle Feeding in Gaushala.jpeg";
 import mangilalChandjiTaterImg from "@/assets/founder-mangilal-chandji-tater.jpeg";
 import sohanKanwarTaterImg from "@/assets/founder-sohan-kanwar-tater.jpeg";
 import mangalChandTaterImg from "@/assets/founder-mangal-chand-tater.jpeg";
@@ -255,6 +258,9 @@ const gallery: { cat: Exclude<GalleryCat, "All">; caption: string; h: number; to
   { cat: "Education", caption: "22 Lakh Scholarship Distribution Ceremony", h: 300, tone: "from-[#800000] to-[#3d0000]", img: twentyTwoLakhScholarshipDistributionImg, hideFromAll: true },
   { cat: "Education", caption: "Inauguration Of Vivekananda Vidyalaya", h: 360, tone: "from-[#1E3A5F] to-[#142943]", img: inaugurationVivekanandaVidyalayaImg },
   { cat: "Education", caption: "Vivekananda Vidyalaya", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: vivekanandaVidyalayaImg },
+  { cat: "Education", caption: "Bhoomi Pooja Ceremony — Vivekananda Vidhyalaya", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: bhoomiPoojaCeremonyVivekanandaImg, hideFromAll: true },
+  { cat: "Healthcare", caption: "Bhoomi Pooja Ceremony — Multi-speciality Hospital", h: 360, tone: "from-[#800000] to-[#4d0000]", img: bhoomiPoojaCeremonyHospitalImg, hideFromAll: true },
+  { cat: "Animal Welfare", caption: "Cattle Feeding in Gaushala", h: 360, tone: "from-[#8FA68E] to-[#4f6651]", img: cattleFeedingGaushalaImg, hideFromAll: true },
   { cat: "Healthcare", caption: "Maternity And Child Care Home Handover", h: 340, tone: "from-[#800000] to-[#4d0000]", img: maternityChildCareHomeHandoverImg },
   { cat: "Healthcare", caption: "Maternity Home Plaque Presentation", h: 420, tone: "from-[#1E3A5F] to-[#142943]", img: maternityHomePlaquePresentationImg },
   { cat: "Healthcare", caption: "Maternity Hospital", h: 320, tone: "from-[#C9A23A] to-[#8a6e1f]", img: maternityHospitalImg, hideFromAll: true },
