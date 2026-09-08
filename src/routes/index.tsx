@@ -140,6 +140,9 @@ const work: Record<"Education" | "Healthcare" | "Community" | "Animal", Project[
     { name: "Sankara Eye Hospital Block", location: "Chennai", impact: "Block Donation", desc: "Dedicated patient care block." },
     { name: "Limb Camps", location: "Multi-region", impact: "2000+ Beneficiaries", desc: "Prosthetic limbs for the differently-abled." },
     { name: "Jain Mission Trust OPD", location: "Chikkaballapur, Karnataka", impact: "OPD Room", desc: "Outpatient care infrastructure." },
+    { name: "Hospital & Medical Facility Support", location: "Jain Mission Trust Hospital, Bangalore", impact: "OPD Room Donation", desc: "Donation of an OPD room to support outpatient care." },
+    { name: "Cancer Care", location: "RYA Madras Cosmo Foundation", impact: "Cancer Detection Centre", desc: "Support towards the Cancer Detection Centre." },
+    { name: "Eye Donation & Organ-Donation Support", location: "Lions Eye Bank, Egmore", impact: "Omni Ambulance", desc: "An Omni ambulance donated to facilitate eye collection." },
   ],
   Community: [
     { name: "Blanket Distribution", location: "Annual", impact: "Winter relief", desc: "Warmth for those without shelter." },
@@ -147,6 +150,9 @@ const work: Record<"Education" | "Healthcare" | "Community" | "Animal", Project[
     { name: "Sadharmik Family Support", location: "Community", impact: "Ongoing", desc: "Quiet support to families in need." },
     { name: "Flat Donation", location: "Chennai", impact: "Housing", desc: "Residential support for deserving families." },
     { name: "Dharamshala Room", location: "Rajasthan & Gujrat", impact: "Lodging", desc: "Dharamshala Rooms Donatated." },
+    { name: "Butati Dham Dharamshala", location: "Butati Dham", impact: "Dharamshala Room", desc: "A dharamshala room donated to support pilgrims and visitors." },
+    { name: "Environmental Initiative", location: "Pan - India", impact: "1,000 Saplings", desc: "1,000 saplings planted as part of the Trust's environmental efforts." },
+    { name: "Natural Disaster Relief", location: "Tamil Nadu", impact: "Emergency Relief", desc: "Relief provided to people affected by COVID-19 and the Tamil Nadu tsunami." },
     { name: "Kapeda Dwar Construction", location: "Kapeda, Rajasthan", impact: "Heritage", desc: "Community gateway construction." },
   ],
   Animal: [
@@ -154,6 +160,7 @@ const work: Record<"Education" | "Healthcare" | "Community" | "Animal", Project[
     { name: "Lambiya Gaushala Shed", location: "Lambiya, rajasthan", impact: "Cattle Shelter", desc: "Additional shelter for the herd." },
     { name: "Continuous Gaushala Support", location: "Pan - India", impact: "Ongoing", desc: "Recurring care, feed and maintenance." },
     { name: "Adinath Jain Trust", location: "Rajasthan", impact: "Animal Welfare", desc: "Long-term support for animal welfare." },
+    { name: "Cow Shelter and Feeding", location: "Rajasthan", impact: "7 Cow Sheds", desc: "A total of seven cow sheds donated across Rajasthan." },
   ],
 };
 
@@ -169,16 +176,17 @@ const timeline = [
   },
   {
     year: "2022",
-    title: "Healthcare & Education",
-    text: "Eye care and infrastructure support reach a major milestone.",
+    title: "Large-scale Eye Care Initiative — Chennai Metro Mahaveer Club",
+    text: "Eye care support reached communities across Chennai through a large-scale initiative.",
     icon: Stethoscope,
-    stats: ["1,212 eye camps", "1.67 lakh screenings", "46,926 surgeries", "14,281 spectacles", "4.36 acres donated for a school"],
+    stats: ["1,212 eye camps", "1,67,743 screenings", "46,926 surgeries", "14,281 pairs of spectacles"],
   },
   {
     year: "2022",
     title: "Seva Mahostav",
-    text: "₹5 crore committed across education, healthcare, community welfare, animal welfare and disaster relief.",
+    text: "A large multi-sector initiative supporting education, healthcare, Gau Seva, eye care, community welfare, Jain institutions and national disaster relief.",
     icon: HandHeart,
+    stats: ["₹5 crore commitment"],
   },
   {
     year: "2026",
