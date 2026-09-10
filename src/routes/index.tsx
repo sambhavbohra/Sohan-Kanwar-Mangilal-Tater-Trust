@@ -1693,6 +1693,7 @@ function Contact() {
               href="https://maps.app.goo.gl/HB8H5LreVFancPEFA"
               target="_blank"
               rel="noreferrer"
+              data-cursor="plain"
               className="block h-[280px] sm:h-[420px] rounded-3xl overflow-hidden border border-border relative bg-[var(--surface)] group"
             >
               <iframe
@@ -1718,7 +1719,10 @@ function Contact() {
 function Footer() {
   useEffect(() => {}, []);
   return (
-    <footer className="bg-[var(--brand-brown)] text-white/80">
+    <footer
+      className="bg-[var(--brand-brown)] text-white/80"
+      data-cursor="plain"
+    >
       <div className="mx-auto max-w-7xl px-6 lg:px-10 py-10 sm:py-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
         <div>
           <div className="flex items-center gap-3">
