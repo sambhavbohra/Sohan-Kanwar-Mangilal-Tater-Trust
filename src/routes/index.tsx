@@ -20,9 +20,10 @@ import {
   X,
   LayoutGrid,
   Landmark,
-  Infinity,
+  Infinity as InfinityIcon,
   ChevronLeft,
   ChevronRight,
+  Play,
 } from "lucide-react";
 import { IndiaMap, places } from "@/components/IndiaMap";
 
@@ -81,16 +82,23 @@ import mangalChandTaterImg from "@/assets/founder-mangal-chand-tater.jpeg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sohan Kanwar Mangilal Tater Charitable Trust - Serving Humanity Since 2011" },
+      {
+        title:
+          "Sohan Kanwar Mangilal Tater Charitable Trust - Serving Humanity Since 2011",
+      },
       {
         name: "description",
         content:
           "A charitable foundation transforming lives through education, healthcare, and compassion across Tamil Nadu and Rajasthan since 2011.",
       },
-      { property: "og:title", content: "Sohan Kanwar Mangilal Tater Charitable Trust" },
+      {
+        property: "og:title",
+        content: "Sohan Kanwar Mangilal Tater Charitable Trust",
+      },
       {
         property: "og:description",
-        content: "Serving humanity since 2011 - education, healthcare and community welfare.",
+        content:
+          "Serving humanity since 2011 - education, healthcare and community welfare.",
       },
     ],
   }),
@@ -101,7 +109,12 @@ export const Route = createFileRoute("/")({
 
 const impactStats = [
   { value: 4820, label: "Students awarded scholarships" },
-  { value: 19766858, label: "Scholarship amount disbursed", prefix: "₹", format: "inr" as const },
+  {
+    value: 19766858,
+    label: "Scholarship amount disbursed",
+    prefix: "₹",
+    format: "inr" as const,
+  },
   { value: 6360, label: "Babies delivered" },
   { value: 166011, label: "Eye camp screenings" },
   { value: 50448, label: "Eye surgeries" },
@@ -112,9 +125,21 @@ const impactStats = [
 ];
 
 const founders = [
-  { name: "Mangilal Chandji Tater", years: "1933 – 2011", img: mangilalChandjiTaterImg },
-  { name: "Sohan Kanwar Tater", years: "1936 – 2017", img: sohanKanwarTaterImg },
-  { name: "Mangal Chand Tater", years: "1955 – 2025", img: mangalChandTaterImg },
+  {
+    name: "Mangilal Chandji Tater",
+    years: "1933 – 2011",
+    img: mangilalChandjiTaterImg,
+  },
+  {
+    name: "Sohan Kanwar Tater",
+    years: "1936 – 2017",
+    img: sohanKanwarTaterImg,
+  },
+  {
+    name: "Mangal Chand Tater",
+    years: "1955 – 2025",
+    img: mangalChandTaterImg,
+  },
 ];
 
 const values = [
@@ -123,53 +148,220 @@ const values = [
   { icon: Users, title: "Community", text: "With and for our people." },
   { icon: HandHeart, title: "Service", text: "Quiet. Consistent. Unwavering." },
   { icon: Eye, title: "Transparency", text: "Open books, open hearts." },
-  { icon: Infinity, title: "Continuity", text: "A legacy for generations." },
+  {
+    icon: InfinityIcon,
+    title: "Continuity",
+    text: "A legacy for generations.",
+  },
 ];
 
-type Project = { name: string; location?: string; impact?: string; desc: string };
-const work: Record<"Education" | "Healthcare" | "Community" | "Animal", Project[]> = {
+type Project = {
+  name: string;
+  location?: string;
+  impact?: string;
+  desc: string;
+};
+const work: Record<
+  "Education" | "Healthcare" | "Community" | "Animal",
+  Project[]
+> = {
   Education: [
-    { name: "Scholarship Programme", location: "Pan - India", impact: "4,820 Students", desc: "Annual merit & need-based scholarships." },
-    { name: "Vivekananda Education Society", location: "Chennai", impact: "Classroom Donation", desc: "Infrastructure for holistic learning." },
-    { name: "Jain Sohan Kanwar Mangilal Tater Vivekananda Vidhyalaya", location: "Uttukottai, Tamil Nadu", impact: "Future Campus", desc: "4.36 Acres of Land donated for a school." },
-    { name: "Rajasthan Education Trust", location: "Rajasthan", impact: "Regional Education", desc: "Multi-year support to regional education." },
-    { name: "Mahaveer Rajasthani Intl. School", location: "Chennai", impact: "Diamond Donor", desc: "Multi-year institutional partnership." },
+    {
+      name: "Scholarship Programme",
+      location: "Pan - India",
+      impact: "4,820 Students",
+      desc: "Annual merit & need-based scholarships.",
+    },
+    {
+      name: "Vivekananda Education Society",
+      location: "Chennai",
+      impact: "Classroom Donation",
+      desc: "Infrastructure for holistic learning.",
+    },
+    {
+      name: "Jain Sohan Kanwar Mangilal Tater Vivekananda Vidhyalaya",
+      location: "Uttukottai, Tamil Nadu",
+      impact: "Future Campus",
+      desc: "4.36 Acres of Land donated for a school.",
+    },
+    {
+      name: "Rajasthan Education Trust",
+      location: "Rajasthan",
+      impact: "Regional Education",
+      desc: "Multi-year support to regional education.",
+    },
+    {
+      name: "Mahaveer Rajasthani Intl. School",
+      location: "Chennai",
+      impact: "Diamond Donor",
+      desc: "Multi-year institutional partnership.",
+    },
   ],
   Healthcare: [
-    { name: "Maternity Hospital", location: "Merta city, Rajasthan", impact: "6,360 Deliveries", desc: "Safe maternity care for underserved families." },
-    { name: "Eye Camps", location: "Tamil nadu and Andhra pradesh", impact: "1,66,011 Screenings", desc: "Free screenings reaching remote communities." },
-    { name: "Lions Eye Bank OMNI Van", location: "Chennai", impact: "Mobile Care", desc: "Mobile eye care to villages." },
-    { name: "Dialysis Machines", location: "RYA Hospital, chennai", impact: "2 Machines", desc: "Ongoing kidney care infrastructure." },
-    { name: "Sankara Eye Hospital Block", location: "Chennai", impact: "Block Donation", desc: "Dedicated patient care block." },
-    { name: "Limb Camps", location: "Multi-region", impact: "2000+ Beneficiaries", desc: "Prosthetic limbs for the differently-abled." },
-    { name: "Jain Mission Trust OPD", location: "Chikkaballapur, Karnataka", impact: "OPD Room", desc: "Outpatient care infrastructure." },
-    { name: "Hospital & Medical Facility Support", location: "Jain Mission Trust Hospital, Bangalore", impact: "OPD Room Donation", desc: "Donation of an OPD room to support outpatient care." },
-    { name: "Cancer Care", location: "RYA Madras Cosmo Foundation", impact: "Cancer Detection Centre", desc: "Support towards the Cancer Detection Centre." },
-    { name: "Eye Donation & Organ-Donation Support", location: "Lions Eye Bank, Egmore", impact: "Omni Ambulance", desc: "An Omni ambulance donated to facilitate eye collection." },
+    {
+      name: "Maternity Hospital",
+      location: "Merta city, Rajasthan",
+      impact: "6,360 Deliveries",
+      desc: "Safe maternity care for underserved families.",
+    },
+    {
+      name: "Eye Camps",
+      location: "Tamil nadu and Andhra pradesh",
+      impact: "1,66,011 Screenings",
+      desc: "Free screenings reaching remote communities.",
+    },
+    {
+      name: "Lions Eye Bank OMNI Van",
+      location: "Chennai",
+      impact: "Mobile Care",
+      desc: "Mobile eye care to villages.",
+    },
+    {
+      name: "Dialysis Machines",
+      location: "RYA Hospital, chennai",
+      impact: "2 Machines",
+      desc: "Ongoing kidney care infrastructure.",
+    },
+    {
+      name: "Sankara Eye Hospital Block",
+      location: "Chennai",
+      impact: "Block Donation",
+      desc: "Dedicated patient care block.",
+    },
+    {
+      name: "Limb Camps",
+      location: "Multi-region",
+      impact: "2000+ Beneficiaries",
+      desc: "Prosthetic limbs for the differently-abled.",
+    },
+    {
+      name: "Jain Mission Trust OPD",
+      location: "Chikkaballapur, Karnataka",
+      impact: "OPD Room",
+      desc: "Outpatient care infrastructure.",
+    },
+    {
+      name: "Hospital & Medical Facility Support",
+      location: "Jain Mission Trust Hospital, Bangalore",
+      impact: "OPD Room Donation",
+      desc: "Donation of an OPD room to support outpatient care.",
+    },
+    {
+      name: "Cancer Care",
+      location: "RYA Madras Cosmo Foundation",
+      impact: "Cancer Detection Centre",
+      desc: "Support towards the Cancer Detection Centre.",
+    },
+    {
+      name: "Eye Donation & Organ-Donation Support",
+      location: "Lions Eye Bank, Egmore",
+      impact: "Omni Ambulance",
+      desc: "An Omni ambulance donated to facilitate eye collection.",
+    },
   ],
   Community: [
-    { name: "Blanket Distribution", location: "Annual", impact: "Winter relief", desc: "Warmth for those without shelter." },
-    { name: "Food Distribution", location: "Year-round", impact: "Daily meals", desc: "Nutrition support in slums and rural areas." },
-    { name: "Sadharmik Family Support", location: "Community", impact: "Ongoing", desc: "Quiet support to families in need." },
-    { name: "Flat Donation", location: "Chennai", impact: "Housing", desc: "Residential support for deserving families." },
-    { name: "Dharamshala Room", location: "Rajasthan & Gujrat", impact: "Lodging", desc: "Dharamshala Rooms Donatated." },
-    { name: "Butati Dham Dharamshala", location: "Butati Dham", impact: "Dharamshala Room", desc: "A dharamshala room donated to support pilgrims and visitors." },
-    { name: "Environmental Initiative", location: "Pan - India", impact: "1,000 Saplings", desc: "1,000 saplings planted as part of the Trust's environmental efforts." },
-    { name: "Natural Disaster Relief", location: "Tamil Nadu", impact: "Emergency Relief", desc: "Relief provided to people affected by COVID-19 and the Tamil Nadu tsunami." },
-    { name: "Kapeda Dwar Construction", location: "Kapeda, Rajasthan", impact: "Heritage", desc: "Community gateway construction." },
+    {
+      name: "Blanket Distribution",
+      location: "Annual",
+      impact: "Winter relief",
+      desc: "Warmth for those without shelter.",
+    },
+    {
+      name: "Food Distribution",
+      location: "Year-round",
+      impact: "Daily meals",
+      desc: "Nutrition support in slums and rural areas.",
+    },
+    {
+      name: "Sadharmik Family Support",
+      location: "Community",
+      impact: "Ongoing",
+      desc: "Quiet support to families in need.",
+    },
+    {
+      name: "Flat Donation",
+      location: "Chennai",
+      impact: "Housing",
+      desc: "Residential support for deserving families.",
+    },
+    {
+      name: "Dharamshala Room",
+      location: "Rajasthan & Gujrat",
+      impact: "Lodging",
+      desc: "Dharamshala Rooms Donatated.",
+    },
+    {
+      name: "Butati Dham Dharamshala",
+      location: "Butati Dham",
+      impact: "Dharamshala Room",
+      desc: "A dharamshala room donated to support pilgrims and visitors.",
+    },
+    {
+      name: "Environmental Initiative",
+      location: "Pan - India",
+      impact: "1,000 Saplings",
+      desc: "1,000 saplings planted as part of the Trust's environmental efforts.",
+    },
+    {
+      name: "Natural Disaster Relief",
+      location: "Tamil Nadu",
+      impact: "Emergency Relief",
+      desc: "Relief provided to people affected by COVID-19 and the Tamil Nadu tsunami.",
+    },
+    {
+      name: "Kapeda Dwar Construction",
+      location: "Kapeda, Rajasthan",
+      impact: "Heritage",
+      desc: "Community gateway construction.",
+    },
   ],
   Animal: [
-    { name: "Khwaspura Gaushala Shed", location: "Khwaspura, Rajasthan", impact: "Cattle Shelter", desc: "Built shelter for rescued cattle." },
-    { name: "Lambiya Gaushala Shed", location: "Lambiya, rajasthan", impact: "Cattle Shelter", desc: "Additional shelter for the herd." },
-    { name: "Continuous Gaushala Support", location: "Pan - India", impact: "Ongoing", desc: "Recurring care, feed and maintenance." },
-    { name: "Adinath Jain Trust", location: "Rajasthan", impact: "Animal Welfare", desc: "Long-term support for animal welfare." },
-    { name: "Cow Shelter and Feeding", location: "Rajasthan", impact: "7 Cow Sheds", desc: "A total of seven cow sheds donated across Rajasthan." },
+    {
+      name: "Khwaspura Gaushala Shed",
+      location: "Khwaspura, Rajasthan",
+      impact: "Cattle Shelter",
+      desc: "Built shelter for rescued cattle.",
+    },
+    {
+      name: "Lambiya Gaushala Shed",
+      location: "Lambiya, rajasthan",
+      impact: "Cattle Shelter",
+      desc: "Additional shelter for the herd.",
+    },
+    {
+      name: "Continuous Gaushala Support",
+      location: "Pan - India",
+      impact: "Ongoing",
+      desc: "Recurring care, feed and maintenance.",
+    },
+    {
+      name: "Adinath Jain Trust",
+      location: "Rajasthan",
+      impact: "Animal Welfare",
+      desc: "Long-term support for animal welfare.",
+    },
+    {
+      name: "Cow Shelter and Feeding",
+      location: "Rajasthan",
+      impact: "7 Cow Sheds",
+      desc: "A total of seven cow sheds donated across Rajasthan.",
+    },
   ],
 };
 
 const timeline = [
-  { year: "2011", title: "Trust Established", text: "Sohan Kanwar Mangilal Tater Charitable Trust begins its journey of service.", icon: Landmark },
-  { year: "2012–21", title: "Growing Years", text: "Expanding in education and healthcare through annual scholarships and eye camps.", icon: ArrowUpRight },
+  {
+    year: "2011",
+    title: "Trust Established",
+    text: "Sohan Kanwar Mangilal Tater Charitable Trust begins its journey of service.",
+    icon: Landmark,
+  },
+  {
+    year: "2012–21",
+    title: "Growing Years",
+    text: "Expanding in education and healthcare through annual scholarships and eye camps.",
+    icon: ArrowUpRight,
+  },
   {
     year: "2022",
     title: "10th Scholarship Distribution",
@@ -182,7 +374,12 @@ const timeline = [
     title: "Large-scale Eye Care Initiative — Chennai Metro Mahaveer Club",
     text: "Eye care support reached communities across Chennai through a large-scale initiative.",
     icon: Stethoscope,
-    stats: ["1,212 eye camps", "1,67,743 screenings", "46,926 surgeries", "14,281 pairs of spectacles"],
+    stats: [
+      "1,212 eye camps",
+      "1,67,743 screenings",
+      "46,926 surgeries",
+      "14,281 pairs of spectacles",
+    ],
   },
   {
     year: "2022",
@@ -219,7 +416,10 @@ const partners = [
   { name: "RMD Care Trust", logo: rmdCareTrustLogo },
   { name: "Seva Bharathi", logo: sevaBharathiLogo },
   { name: "Chennai Metro Mahaveer", logo: chennaiMetroMahaveerLogo },
-  { name: "Rajasthani Association Tamil Nadu", logo: rajasthaniAssociationTnLogo },
+  {
+    name: "Rajasthani Association Tamil Nadu",
+    logo: rajasthaniAssociationTnLogo,
+  },
 ];
 
 /* Gallery */
@@ -231,39 +431,254 @@ const galleryTabs = [
   { id: "Animal Welfare" as const, icon: PawPrint, label: "Animal Welfare" },
 ];
 type GalleryCat = (typeof galleryTabs)[number]["id"];
-const gallery: { cat: Exclude<GalleryCat, "All">; caption: string; h: number; tone: string; img: string; hideFromAll?: boolean }[] = [
-  { cat: "Healthcare", caption: "Free Eye Screening Camp Chennai", h: 320, tone: "from-[#1E3A5F] to-[#142943]", img: freeEyeScreeningCampChennaiImg },
-  { cat: "Education", caption: "Annual Scholarship Ceremony Chennai", h: 420, tone: "from-[#800000] to-[#4d0000]", img: annualScholarshipCeremonyChennaiImg },
-  { cat: "Healthcare", caption: "Maternity Ward Inauguration", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: maternityWardInaugurationImg },
-  { cat: "Animal Welfare", caption: "Khwaspura Gaushala Shed", h: 360, tone: "from-[#8FA68E] to-[#4f6651]", img: khwaspuraGaushalaShedImg, hideFromAll: true },
-  { cat: "Healthcare", caption: "Sankara Eye Hospital Block", h: 400, tone: "from-[#800000] to-[#3d0000]", img: sankaraEyeHospitalBlockImg },
-  { cat: "Healthcare", caption: "Cataract Surgery Follow-Up", h: 280, tone: "from-[#1E3A5F] to-[#142943]", img: cataractSurgeryFollowUpImg },
-  { cat: "Community", caption: "Food Distribution Drive", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveImg, hideFromAll: true },
-  { cat: "Community", caption: "Room Donation To Dharamshala Lodging", h: 320, tone: "from-[#1E3A5F] to-[#142943]", img: roomDonationDharamshalaLodgingImg },
-  { cat: "Healthcare", caption: "Newborn Care Unit", h: 320, tone: "from-[#C9A23A] to-[#8a6e1f]", img: newbornCareUnitImg, hideFromAll: true },
-  { cat: "Animal Welfare", caption: "Chaara Godown Nagaur", h: 340, tone: "from-[#8FA68E] to-[#4f6651]", img: chaaraGodownNagaurImg },
-  { cat: "Community", caption: "Food Distribution Drive", h: 420, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveNewImg },
-  { cat: "Community", caption: "Food Distribution Drive With Akshaya Trust", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionDriveAkshayaTrustImg },
-  { cat: "Healthcare", caption: "Prosthetics Distribution", h: 300, tone: "from-[#1E3A5F] to-[#142943]", img: prostheticsDistributionImg, hideFromAll: true },
-  { cat: "Community", caption: "Hall Donated In Marudhar Merta City", h: 320, tone: "from-[#800000] to-[#3d0000]", img: hallDonatedMarudharMertaCityImg, hideFromAll: true },
-  { cat: "Healthcare", caption: "MoU Between Our Trust And Sewa Bharti Tamil Nadu For Multi-Specialty Hospital", h: 420, tone: "from-[#800000] to-[#3d0000]", img: mouSewaBhartiMultiSpecialtyHospitalImg },
-  { cat: "Healthcare", caption: "Multispeciality Hospital Bhoomi Pooja", h: 360, tone: "from-[#800000] to-[#3d0000]", img: multispecialityHospitalBhoomiPoojaImg },
-  { cat: "Community", caption: "Food Distribution", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: foodDistributionImg, hideFromAll: true },
-  { cat: "Healthcare", caption: "Cataract Surgery With Chennai Metro Mahaveer", h: 340, tone: "from-[#1E3A5F] to-[#142943]", img: cataractSurgeryChennaiMetroMahaveerImg, hideFromAll: true },
-  { cat: "Community", caption: "Awarded Rajasthan Shree By Rajasthan Sangh Chennai", h: 320, tone: "from-[#800000] to-[#4d0000]", img: awardedRajasthanShreeImg },
-  { cat: "Healthcare", caption: "Prosthetics Distribution With Adinath Jain Trust Chennai", h: 360, tone: "from-[#1E3A5F] to-[#142943]", img: prostheticsDistributionAdinathJainTrustImg },
-  { cat: "Education", caption: "10th Scholarship Distribution Ceremony", h: 340, tone: "from-[#800000] to-[#4d0000]", img: tenthScholarshipDistributionImg, hideFromAll: true },
-  { cat: "Education", caption: "11th Scholarship Distribution Ceremony", h: 380, tone: "from-[#1E3A5F] to-[#142943]", img: eleventhScholarshipDistributionImg, hideFromAll: true },
-  { cat: "Education", caption: "13th Scholarship Distribution To 439 Students", h: 420, tone: "from-[#C9A23A] to-[#8a6e1f]", img: thirteenthScholarshipDistributionImg, hideFromAll: true },
-  { cat: "Education", caption: "22 Lakh Scholarship Distribution Ceremony", h: 300, tone: "from-[#800000] to-[#3d0000]", img: twentyTwoLakhScholarshipDistributionImg, hideFromAll: true },
-  { cat: "Education", caption: "Inauguration Of Vivekananda Vidyalaya", h: 360, tone: "from-[#1E3A5F] to-[#142943]", img: inaugurationVivekanandaVidyalayaImg },
-  { cat: "Education", caption: "Vivekananda Vidyalaya", h: 300, tone: "from-[#C9A23A] to-[#8a6e1f]", img: vivekanandaVidyalayaImg },
-  { cat: "Education", caption: "Bhoomi Pooja Ceremony — Vivekananda Vidhyalaya", h: 360, tone: "from-[#C9A23A] to-[#8a6e1f]", img: bhoomiPoojaCeremonyVivekanandaImg, hideFromAll: true },
-  { cat: "Healthcare", caption: "Bhoomi Pooja Ceremony — Multi-speciality Hospital", h: 360, tone: "from-[#800000] to-[#4d0000]", img: bhoomiPoojaCeremonyHospitalImg, hideFromAll: true },
-  { cat: "Animal Welfare", caption: "Cattle Feeding in Gaushala", h: 360, tone: "from-[#8FA68E] to-[#4f6651]", img: cattleFeedingGaushalaImg, hideFromAll: true },
-  { cat: "Healthcare", caption: "Maternity And Child Care Home Handover", h: 340, tone: "from-[#800000] to-[#4d0000]", img: maternityChildCareHomeHandoverImg },
-  { cat: "Healthcare", caption: "Maternity Home Plaque Presentation", h: 420, tone: "from-[#1E3A5F] to-[#142943]", img: maternityHomePlaquePresentationImg },
-  { cat: "Healthcare", caption: "Maternity Hospital", h: 320, tone: "from-[#C9A23A] to-[#8a6e1f]", img: maternityHospitalImg, hideFromAll: true },
+const gallery: {
+  cat: Exclude<GalleryCat, "All">;
+  caption: string;
+  h: number;
+  tone: string;
+  img: string;
+  hideFromAll?: boolean;
+}[] = [
+  {
+    cat: "Healthcare",
+    caption: "Free Eye Screening Camp Chennai",
+    h: 320,
+    tone: "from-[#1E3A5F] to-[#142943]",
+    img: freeEyeScreeningCampChennaiImg,
+  },
+  {
+    cat: "Education",
+    caption: "Annual Scholarship Ceremony Chennai",
+    h: 420,
+    tone: "from-[#800000] to-[#4d0000]",
+    img: annualScholarshipCeremonyChennaiImg,
+  },
+  {
+    cat: "Healthcare",
+    caption: "Maternity Ward Inauguration",
+    h: 300,
+    tone: "from-[#C9A23A] to-[#8a6e1f]",
+    img: maternityWardInaugurationImg,
+  },
+  {
+    cat: "Animal Welfare",
+    caption: "Khwaspura Gaushala Shed",
+    h: 360,
+    tone: "from-[#8FA68E] to-[#4f6651]",
+    img: khwaspuraGaushalaShedImg,
+    hideFromAll: true,
+  },
+  {
+    cat: "Healthcare",
+    caption: "Sankara Eye Hospital Block",
+    h: 400,
+    tone: "from-[#800000] to-[#3d0000]",
+    img: sankaraEyeHospitalBlockImg,
+  },
+  {
+    cat: "Healthcare",
+    caption: "Cataract Surgery Follow-Up",
+    h: 280,
+    tone: "from-[#1E3A5F] to-[#142943]",
+    img: cataractSurgeryFollowUpImg,
+  },
+  {
+    cat: "Community",
+    caption: "Food Distribution Drive",
+    h: 360,
+    tone: "from-[#C9A23A] to-[#8a6e1f]",
+    img: foodDistributionDriveImg,
+    hideFromAll: true,
+  },
+  {
+    cat: "Community",
+    caption: "Room Donation To Dharamshala Lodging",
+    h: 320,
+    tone: "from-[#1E3A5F] to-[#142943]",
+    img: roomDonationDharamshalaLodgingImg,
+  },
+  {
+    cat: "Healthcare",
+    caption: "Newborn Care Unit",
+    h: 320,
+    tone: "from-[#C9A23A] to-[#8a6e1f]",
+    img: newbornCareUnitImg,
+    hideFromAll: true,
+  },
+  {
+    cat: "Animal Welfare",
+    caption: "Chaara Godown Nagaur",
+    h: 340,
+    tone: "from-[#8FA68E] to-[#4f6651]",
+    img: chaaraGodownNagaurImg,
+  },
+  {
+    cat: "Community",
+    caption: "Food Distribution Drive",
+    h: 420,
+    tone: "from-[#C9A23A] to-[#8a6e1f]",
+    img: foodDistributionDriveNewImg,
+  },
+  {
+    cat: "Community",
+    caption: "Food Distribution Drive With Akshaya Trust",
+    h: 300,
+    tone: "from-[#C9A23A] to-[#8a6e1f]",
+    img: foodDistributionDriveAkshayaTrustImg,
+  },
+  {
+    cat: "Healthcare",
+    caption: "Prosthetics Distribution",
+    h: 300,
+    tone: "from-[#1E3A5F] to-[#142943]",
+    img: prostheticsDistributionImg,
+    hideFromAll: true,
+  },
+  {
+    cat: "Community",
+    caption: "Hall Donated In Marudhar Merta City",
+    h: 320,
+    tone: "from-[#800000] to-[#3d0000]",
+    img: hallDonatedMarudharMertaCityImg,
+    hideFromAll: true,
+  },
+  {
+    cat: "Healthcare",
+    caption:
+      "MoU Between Our Trust And Sewa Bharti Tamil Nadu For Multi-Specialty Hospital",
+    h: 420,
+    tone: "from-[#800000] to-[#3d0000]",
+    img: mouSewaBhartiMultiSpecialtyHospitalImg,
+  },
+  {
+    cat: "Healthcare",
+    caption: "Multispeciality Hospital Bhoomi Pooja",
+    h: 360,
+    tone: "from-[#800000] to-[#3d0000]",
+    img: multispecialityHospitalBhoomiPoojaImg,
+  },
+  {
+    cat: "Community",
+    caption: "Food Distribution",
+    h: 360,
+    tone: "from-[#C9A23A] to-[#8a6e1f]",
+    img: foodDistributionImg,
+    hideFromAll: true,
+  },
+  {
+    cat: "Healthcare",
+    caption: "Cataract Surgery With Chennai Metro Mahaveer",
+    h: 340,
+    tone: "from-[#1E3A5F] to-[#142943]",
+    img: cataractSurgeryChennaiMetroMahaveerImg,
+    hideFromAll: true,
+  },
+  {
+    cat: "Community",
+    caption: "Awarded Rajasthan Shree By Rajasthan Sangh Chennai",
+    h: 320,
+    tone: "from-[#800000] to-[#4d0000]",
+    img: awardedRajasthanShreeImg,
+  },
+  {
+    cat: "Healthcare",
+    caption: "Prosthetics Distribution With Adinath Jain Trust Chennai",
+    h: 360,
+    tone: "from-[#1E3A5F] to-[#142943]",
+    img: prostheticsDistributionAdinathJainTrustImg,
+  },
+  {
+    cat: "Education",
+    caption: "10th Scholarship Distribution Ceremony",
+    h: 340,
+    tone: "from-[#800000] to-[#4d0000]",
+    img: tenthScholarshipDistributionImg,
+    hideFromAll: true,
+  },
+  {
+    cat: "Education",
+    caption: "11th Scholarship Distribution Ceremony",
+    h: 380,
+    tone: "from-[#1E3A5F] to-[#142943]",
+    img: eleventhScholarshipDistributionImg,
+    hideFromAll: true,
+  },
+  {
+    cat: "Education",
+    caption: "13th Scholarship Distribution To 439 Students",
+    h: 420,
+    tone: "from-[#C9A23A] to-[#8a6e1f]",
+    img: thirteenthScholarshipDistributionImg,
+    hideFromAll: true,
+  },
+  {
+    cat: "Education",
+    caption: "22 Lakh Scholarship Distribution Ceremony",
+    h: 300,
+    tone: "from-[#800000] to-[#3d0000]",
+    img: twentyTwoLakhScholarshipDistributionImg,
+    hideFromAll: true,
+  },
+  {
+    cat: "Education",
+    caption: "Inauguration Of Vivekananda Vidyalaya",
+    h: 360,
+    tone: "from-[#1E3A5F] to-[#142943]",
+    img: inaugurationVivekanandaVidyalayaImg,
+  },
+  {
+    cat: "Education",
+    caption: "Vivekananda Vidyalaya",
+    h: 300,
+    tone: "from-[#C9A23A] to-[#8a6e1f]",
+    img: vivekanandaVidyalayaImg,
+  },
+  {
+    cat: "Education",
+    caption: "Bhoomi Pooja Ceremony — Vivekananda Vidhyalaya",
+    h: 360,
+    tone: "from-[#C9A23A] to-[#8a6e1f]",
+    img: bhoomiPoojaCeremonyVivekanandaImg,
+    hideFromAll: true,
+  },
+  {
+    cat: "Healthcare",
+    caption: "Bhoomi Pooja Ceremony — Multi-speciality Hospital",
+    h: 360,
+    tone: "from-[#800000] to-[#4d0000]",
+    img: bhoomiPoojaCeremonyHospitalImg,
+    hideFromAll: true,
+  },
+  {
+    cat: "Animal Welfare",
+    caption: "Cattle Feeding in Gaushala",
+    h: 360,
+    tone: "from-[#8FA68E] to-[#4f6651]",
+    img: cattleFeedingGaushalaImg,
+    hideFromAll: true,
+  },
+  {
+    cat: "Healthcare",
+    caption: "Maternity And Child Care Home Handover",
+    h: 340,
+    tone: "from-[#800000] to-[#4d0000]",
+    img: maternityChildCareHomeHandoverImg,
+  },
+  {
+    cat: "Healthcare",
+    caption: "Maternity Home Plaque Presentation",
+    h: 420,
+    tone: "from-[#1E3A5F] to-[#142943]",
+    img: maternityHomePlaquePresentationImg,
+  },
+  {
+    cat: "Healthcare",
+    caption: "Maternity Hospital",
+    h: 320,
+    tone: "from-[#C9A23A] to-[#8a6e1f]",
+    img: maternityHospitalImg,
+    hideFromAll: true,
+  },
 ];
 
 /* ───────────────────────── PAGE ───────────────────────── */
@@ -292,7 +707,10 @@ function Index() {
 
 function Hero() {
   return (
-    <section id="home" className="relative hero-backdrop flex items-center pt-24 pb-16 sm:pt-28 sm:pb-20 [@media(min-width:640px)_and_(min-aspect-ratio:1/1)]:min-h-dvh overflow-hidden">
+    <section
+      id="home"
+      className="relative hero-backdrop flex items-center pt-24 pb-16 sm:pt-28 sm:pb-20 [@media(min-width:640px)_and_(min-aspect-ratio:1/1)]:min-h-dvh overflow-hidden"
+    >
       <img
         src={heroImage}
         alt=""
@@ -325,7 +743,9 @@ function Hero() {
             className="mt-6 sm:mt-8 font-display text-[2.6rem] sm:text-5xl lg:text-[5.25rem] leading-[1.05] tracking-tight text-balance text-[var(--brand-brown)]"
           >
             Sohan Kanwar Mangilal Tater{" "}
-            <span className="italic text-[var(--brand-green)]">Charitable Trust</span>
+            <span className="italic text-[var(--brand-green)]">
+              Charitable Trust
+            </span>
           </motion.h1>
 
           <motion.p
@@ -334,9 +754,19 @@ function Hero() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="mt-8 max-w-2xl text-lg sm:text-xl leading-relaxed text-foreground/70 text-balance"
           >
-            Transforming lives through <span className="text-[var(--brand-brown)] font-medium">education</span>,{" "}
-            <span className="text-[var(--brand-brown)] font-medium">healthcare</span>, and{" "}
-            <span className="text-[var(--brand-brown)] font-medium">compassion</span> across communities and generations.
+            Transforming lives through{" "}
+            <span className="text-[var(--brand-brown)] font-medium">
+              education
+            </span>
+            ,{" "}
+            <span className="text-[var(--brand-brown)] font-medium">
+              healthcare
+            </span>
+            , and{" "}
+            <span className="text-[var(--brand-brown)] font-medium">
+              compassion
+            </span>{" "}
+            across communities and generations.
           </motion.p>
 
           <motion.div
@@ -350,7 +780,10 @@ function Hero() {
               className="group inline-flex items-center gap-2 rounded-full bg-[var(--brand-green)] px-7 py-3.5 text-sm font-medium text-white transition hover:opacity-90 hover:shadow-xl hover:shadow-[var(--brand-green)]/20"
             >
               Explore our work
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight
+                size={16}
+                className="transition-transform group-hover:translate-x-0.5"
+              />
             </a>
             <a
               href="#contact"
@@ -369,7 +802,6 @@ function Hero() {
         >
           <div className="relative isolate flex h-64 w-64 lg:h-96 lg:w-96 items-center justify-center">
             <div className="absolute inset-4 lg:inset-6 rounded-full bg-[var(--brand-gold)]/35 blur-3xl" />
-            <div className="absolute inset-8 lg:inset-12 rounded-full border border-[var(--brand-gold)]/35 bg-background/20 shadow-[0_40px_110px_-70px_rgba(47,118,59,0.8)]" />
             <img
               src={trustLogo}
               alt="Trust emblem"
@@ -382,10 +814,16 @@ function Hero() {
       {/* Marquee of impact */}
       <div className="absolute bottom-0 inset-x-0 border-t border-border/60 bg-background/60 backdrop-blur">
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-5 flex items-center gap-8 overflow-x-auto text-sm text-foreground/60">
-          <span className="whitespace-nowrap tracking-widest uppercase text-xs font-bold text-[#28752f]">Impact at a glance</span>
-          <span className="whitespace-nowrap font-bold">4,820 Scholarships</span>
+          <span className="whitespace-nowrap tracking-widest uppercase text-xs font-bold text-[#28752f]">
+            Impact at a glance
+          </span>
+          <span className="whitespace-nowrap font-bold">
+            4,820 Scholarships
+          </span>
           <span className="text-border">·</span>
-          <span className="whitespace-nowrap font-bold">50,448 Eye Surgeries</span>
+          <span className="whitespace-nowrap font-bold">
+            50,448 Eye Surgeries
+          </span>
           <span className="text-border">·</span>
           <span className="whitespace-nowrap font-bold">6,360 Deliveries</span>
           <span className="text-border">·</span>
@@ -404,19 +842,26 @@ function Impact() {
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <Reveal>
           <div className="max-w-3xl">
-            <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Our Impact</p>
+            <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">
+              Our Impact
+            </p>
             <h2 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-balance">
               A decade of measurable change.
             </h2>
             <p className="mt-6 text-lg text-foreground/65 max-w-xl">
-              Numbers tell only part of the story - every figure here represents a life touched, a family supported, a future reshaped.
+              Numbers tell only part of the story - every figure here represents
+              a life touched, a family supported, a future reshaped.
             </p>
           </div>
         </Reveal>
 
         <div className="mt-16 flex flex-wrap rounded-2xl overflow-hidden border border-border">
           {impactStats.map((s, i) => (
-            <Reveal key={i} delay={i * 0.04} className="grow min-w-0 basis-full sm:basis-1/2 lg:basis-1/3">
+            <Reveal
+              key={i}
+              delay={i * 0.04}
+              className="grow min-w-0 basis-full sm:basis-1/2 lg:basis-1/3"
+            >
               <div className="bg-background border-r border-b border-border p-5 sm:p-8 lg:p-10 h-full group hover:bg-[var(--surface)] active:bg-[var(--surface)] transition-colors">
                 <div className="font-sans text-3xl sm:text-4xl lg:text-[2.5rem] text-[var(--brand-brown)] leading-none">
                   <Counter
@@ -426,7 +871,9 @@ function Impact() {
                     format={s.format ?? "number"}
                   />
                 </div>
-                <div className="mt-4 text-sm uppercase tracking-wider text-foreground/55">{s.label}</div>
+                <div className="mt-4 text-sm uppercase tracking-wider text-foreground/55">
+                  {s.label}
+                </div>
                 <div className="mt-6 h-px w-8 bg-[var(--brand-gold)] group-hover:w-16 group-active:w-16 transition-all duration-500" />
               </div>
             </Reveal>
@@ -458,8 +905,12 @@ function Founders() {
                   alt={f.name}
                   className="h-40 w-40 rounded-full object-cover border-4 border-[var(--brand-gold)]/40 shadow-lg"
                 />
-                <div className="mt-5 font-display text-lg text-[var(--brand-brown)]">{f.name}</div>
-                <div className="mt-1 text-sm text-foreground/55 tracking-wide">{f.years}</div>
+                <div className="mt-5 font-display text-lg text-[var(--brand-brown)]">
+                  {f.name}
+                </div>
+                <div className="mt-1 text-sm text-foreground/55 tracking-wide">
+                  {f.years}
+                </div>
               </div>
             </Reveal>
           ))}
@@ -488,7 +939,9 @@ function OurWork() {
         <Reveal>
           <div className="flex flex-col gap-6">
             <div>
-              <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Our Work</p>
+              <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">
+                Our Work
+              </p>
               <h2 className="mt-4 font-display text-2xl sm:text-4xl lg:text-6xl leading-[1.05] text-balance">
                 Programmes that move quietly, reach widely.
               </h2>
@@ -532,10 +985,14 @@ function OurWork() {
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <h3 className="text-lg font-medium tracking-tight text-[var(--brand-brown)] leading-tight">{p.name}</h3>
+                    <h3 className="text-lg font-medium tracking-tight text-[var(--brand-brown)] leading-tight">
+                      {p.name}
+                    </h3>
                     <div className="mt-1.5 flex items-center gap-2 flex-wrap">
                       {p.location && (
-                        <span className="text-[10px] uppercase tracking-wider text-foreground/50">{p.location}</span>
+                        <span className="text-[10px] uppercase tracking-wider text-foreground/50">
+                          {p.location}
+                        </span>
                       )}
                       {p.impact && (
                         <span className="inline-flex items-center rounded-full bg-[var(--brand-gold)]/40 px-2 py-0.5 text-[10px] font-medium text-[var(--brand-brown)]">
@@ -544,9 +1001,14 @@ function OurWork() {
                       )}
                     </div>
                   </div>
-                  <ArrowUpRight size={16} className="shrink-0 text-foreground/30 group-hover:text-[var(--brand-green)] group-hover:rotate-12 group-active:text-[var(--brand-green)] group-active:rotate-12 transition-all" />
+                  <ArrowUpRight
+                    size={16}
+                    className="shrink-0 text-foreground/30 group-hover:text-[var(--brand-green)] group-hover:rotate-12 group-active:text-[var(--brand-green)] group-active:rotate-12 transition-all"
+                  />
                 </div>
-                <p className="mt-3 text-sm text-foreground/65 leading-relaxed">{p.desc}</p>
+                <p className="mt-3 text-sm text-foreground/65 leading-relaxed">
+                  {p.desc}
+                </p>
               </motion.div>
             ))}
           </motion.div>
@@ -568,7 +1030,9 @@ function DeepDive() {
         {/* Timeline */}
         <div>
           <Reveal>
-            <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Timeline</p>
+            <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">
+              Timeline
+            </p>
             <h2 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-balance max-w-3xl">
               From 2011 to today.
             </h2>
@@ -586,7 +1050,9 @@ function DeepDive() {
                   <Reveal key={`${t.year}-${t.title}`} delay={i * 0.03}>
                     <div className="relative grid grid-cols-[3.5rem_1fr] sm:grid-cols-[5rem_1fr] gap-3 sm:gap-5 items-start">
                       <div className="pt-3 text-right">
-                        <span className="font-display text-sm sm:text-base text-[var(--brand-green)]">{t.year}</span>
+                        <span className="font-display text-sm sm:text-base text-[var(--brand-green)]">
+                          {t.year}
+                        </span>
                       </div>
                       <div className="group rounded-xl border border-border bg-[var(--surface)] px-4 py-3 sm:px-5 sm:py-4 transition-all duration-300 hover:border-[var(--brand-gold)]/50 hover:shadow-md hover:shadow-[var(--brand-brown)]/5">
                         <div className="flex items-center gap-2">
@@ -595,9 +1061,13 @@ function DeepDive() {
                               <Icon size={12} />
                             </span>
                           )}
-                          <h3 className="font-display text-base sm:text-lg text-[var(--brand-brown)]">{t.title}</h3>
+                          <h3 className="font-display text-base sm:text-lg text-[var(--brand-brown)]">
+                            {t.title}
+                          </h3>
                         </div>
-                        <p className="mt-1.5 text-sm text-foreground/65 max-w-md">{t.text}</p>
+                        <p className="mt-1.5 text-sm text-foreground/65 max-w-md">
+                          {t.text}
+                        </p>
                         {t.stats && (
                           <div className="mt-2.5 flex flex-wrap gap-1.5">
                             {t.stats.map((s) => (
@@ -624,14 +1094,20 @@ function DeepDive() {
         <div className="grid lg:grid-cols-2 gap-12">
           <Reveal>
             <div className="bg-[var(--surface)] rounded-3xl p-6 sm:p-8 lg:p-10 h-full border border-border">
-              <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Geographic Reach</p>
-              <h3 className="mt-3 font-display text-3xl text-[var(--brand-brown)]">Where we work</h3>
+              <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">
+                Geographic Reach
+              </p>
+              <h3 className="mt-3 font-display text-3xl text-[var(--brand-brown)]">
+                Where we work
+              </h3>
               <div className="mt-8 space-y-6">
                 {Object.entries(places).map(([state, cities]) => (
                   <div key={state}>
                     <button
                       type="button"
-                      onClick={() => setZoomedState((cur) => (cur === state ? null : state))}
+                      onClick={() =>
+                        setZoomedState((cur) => (cur === state ? null : state))
+                      }
                       className="flex items-center gap-2 text-sm font-medium text-[var(--brand-brown)] touch-manipulation"
                     >
                       <MapPin size={14} className="text-[var(--brand-green)]" />
@@ -642,7 +1118,9 @@ function DeepDive() {
                         <span
                           key={c}
                           onMouseEnter={() => setActiveCity(c)}
-                          onMouseLeave={() => setActiveCity((cur) => (cur === c ? null : cur))}
+                          onMouseLeave={() =>
+                            setActiveCity((cur) => (cur === c ? null : cur))
+                          }
                           onClick={() => {
                             setActiveCity(c);
                             setZoomedState(state);
@@ -667,8 +1145,12 @@ function DeepDive() {
             <div className="bg-[var(--surface)] rounded-3xl p-6 sm:p-8 lg:p-10 h-full border border-border">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Reach</p>
-                  <h3 className="mt-3 font-display text-3xl text-[var(--brand-brown)]">On the map</h3>
+                  <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">
+                    Reach
+                  </p>
+                  <h3 className="mt-3 font-display text-3xl text-[var(--brand-brown)]">
+                    On the map
+                  </h3>
                 </div>
                 {zoomedState && (
                   <button
@@ -683,7 +1165,9 @@ function DeepDive() {
               <div className="mt-4 h-72 sm:h-80 rounded-2xl border border-border overflow-hidden bg-white">
                 <IndiaMap activeCity={activeCity} zoomedState={zoomedState} />
               </div>
-              <p className="mt-2 text-center text-xs text-foreground/50">Hover a city, or click a state, to zoom in.</p>
+              <p className="mt-2 text-center text-xs text-foreground/50">
+                Hover a city, or click a state, to zoom in.
+              </p>
             </div>
           </Reveal>
         </div>
@@ -693,22 +1177,39 @@ function DeepDive() {
           <Reveal>
             <div className="flex items-end justify-between gap-6 flex-wrap">
               <div>
-                <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Partners</p>
-                <h2 className="mt-4 font-display text-3xl sm:text-5xl">Institutions driving change with us.</h2>
+                <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">
+                  Partners
+                </p>
+                <h2 className="mt-4 font-display text-3xl sm:text-5xl">
+                  Institutions driving change with us.
+                </h2>
               </div>
             </div>
           </Reveal>
           <div className="mt-12 flex flex-wrap rounded-2xl overflow-hidden border border-border">
             {partners.map((p, i) => (
-              <Reveal key={p.name} delay={i * 0.03} className="grow min-w-0 basis-1/2 sm:basis-1/3 lg:basis-1/4">
+              <Reveal
+                key={p.name}
+                delay={i * 0.03}
+                className="grow min-w-0 basis-1/2 sm:basis-1/3 lg:basis-1/4"
+              >
                 <div className="bg-background border-r border-b border-border p-4 sm:p-6 lg:p-8 h-full flex items-center justify-center text-center min-h-28">
                   <div>
                     {p.logo ? (
-                      <img src={p.logo} alt={p.name} className="mx-auto h-16 w-auto object-contain mb-2" />
+                      <img
+                        src={p.logo}
+                        alt={p.name}
+                        className="mx-auto h-16 w-auto object-contain mb-2"
+                      />
                     ) : (
-                      <Building2 size={20} className="mx-auto text-[var(--brand-green)] mb-3" />
+                      <Building2
+                        size={20}
+                        className="mx-auto text-[var(--brand-green)] mb-3"
+                      />
                     )}
-                    <div className="text-sm font-medium text-[var(--brand-brown)] leading-tight">{p.name}</div>
+                    <div className="text-sm font-medium text-[var(--brand-brown)] leading-tight">
+                      {p.name}
+                    </div>
                   </div>
                 </div>
               </Reveal>
@@ -725,13 +1226,18 @@ function DeepDive() {
 function Gallery() {
   const [cat, setCat] = useState<GalleryCat>("All");
   const [active, setActive] = useState<number | null>(null);
-  const items = cat === "All" ? gallery.filter((g) => !g.hideFromAll) : gallery.filter((g) => g.cat === cat);
+  const items =
+    cat === "All"
+      ? gallery.filter((g) => !g.hideFromAll)
+      : gallery.filter((g) => g.cat === cat);
 
   useEffect(() => {
     if (active === null) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") setActive((i) => (i === null || i >= items.length - 1 ? i : i + 1));
-      if (e.key === "ArrowLeft") setActive((i) => (i === null || i <= 0 ? i : i - 1));
+      if (e.key === "ArrowRight")
+        setActive((i) => (i === null || i >= items.length - 1 ? i : i + 1));
+      if (e.key === "ArrowLeft")
+        setActive((i) => (i === null || i <= 0 ? i : i - 1));
       if (e.key === "Escape") setActive(null);
     };
     window.addEventListener("keydown", onKey);
@@ -744,7 +1250,9 @@ function Gallery() {
         <Reveal>
           <div className="flex flex-col gap-6">
             <div>
-              <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Gallery</p>
+              <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">
+                Gallery
+              </p>
               <h2 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-balance">
                 Moments from the field.
               </h2>
@@ -783,7 +1291,12 @@ function Gallery() {
                 style={{ height: g.h }}
               >
                 {g.img && (
-                  <img src={g.img} alt={g.caption} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+                  <img
+                    src={g.img}
+                    alt={g.caption}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
                 )}
                 <div
                   className={`absolute inset-0 ${
@@ -793,8 +1306,12 @@ function Gallery() {
                   }`}
                 />
                 <div className="absolute inset-0 flex flex-col justify-end p-3 sm:p-6">
-                  <div className="text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-white/70">{g.cat}</div>
-                  <div className="mt-1 sm:mt-2 font-display text-sm sm:text-xl text-white leading-snug">{g.caption}</div>
+                  <div className="text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-white/70">
+                    {g.cat}
+                  </div>
+                  <div className="mt-1 sm:mt-2 font-display text-sm sm:text-xl text-white leading-snug">
+                    {g.caption}
+                  </div>
                 </div>
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition bg-black/20" />
               </motion.button>
@@ -812,7 +1329,12 @@ function Gallery() {
             className="fixed inset-0 z-[60] bg-black/85 backdrop-blur flex items-center justify-center p-6"
             onClick={() => setActive(null)}
           >
-            <button onClick={() => setActive(null)} aria-label="Close" data-cursor="plain" className="absolute top-6 right-6 text-white/70 hover:text-white">
+            <button
+              onClick={() => setActive(null)}
+              aria-label="Close"
+              data-cursor="plain"
+              className="absolute top-6 right-6 text-white/70 hover:text-white"
+            >
               <X size={28} />
             </button>
             {active > 0 && (
@@ -832,7 +1354,9 @@ function Gallery() {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  setActive((i) => (i === null || i >= items.length - 1 ? i : i + 1));
+                  setActive((i) =>
+                    i === null || i >= items.length - 1 ? i : i + 1,
+                  );
                 }}
                 aria-label="Next photo"
                 data-cursor="plain"
@@ -846,21 +1370,33 @@ function Gallery() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               className={`relative w-full max-w-2xl aspect-[4/3] rounded-3xl overflow-hidden ${
-                items[active].img ? "bg-[var(--surface)]" : `bg-gradient-to-br ${items[active].tone}`
+                items[active].img
+                  ? "bg-[var(--surface)]"
+                  : `bg-gradient-to-br ${items[active].tone}`
               }`}
               onClick={(e) => e.stopPropagation()}
             >
               {items[active].img && (
-                <img src={items[active].img} alt={items[active].caption} className="absolute inset-0 h-full w-full object-cover" />
+                <img
+                  src={items[active].img}
+                  alt={items[active].caption}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
               )}
               <div
                 className={`absolute inset-0 ${
-                  items[active].img ? "bg-gradient-to-t from-black/75 via-black/10 to-transparent" : ""
+                  items[active].img
+                    ? "bg-gradient-to-t from-black/75 via-black/10 to-transparent"
+                    : ""
                 }`}
               />
               <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-10">
-                <div className="text-xs tracking-[0.2em] uppercase text-white/70">{items[active].cat}</div>
-                <div className="mt-2 font-display text-xl sm:text-3xl text-white">{items[active].caption}</div>
+                <div className="text-xs tracking-[0.2em] uppercase text-white/70">
+                  {items[active].cat}
+                </div>
+                <div className="mt-2 font-display text-xl sm:text-3xl text-white">
+                  {items[active].caption}
+                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -880,35 +1416,50 @@ function Donate() {
           <Reveal>
             <div className="relative h-full rounded-3xl bg-[var(--brand-green)] text-white p-7 sm:p-10 lg:p-14 overflow-hidden">
               <div className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-[var(--brand-gold)]/30 blur-3xl" />
-              <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-gold)] font-medium">Donate</p>
+              <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-gold)] font-medium">
+                Donate
+              </p>
               <h2 className="mt-4 font-display text-4xl lg:text-5xl leading-tight text-white">
                 Your contribution becomes someone's tomorrow.
               </h2>
               <p className="mt-6 text-white/85 max-w-md">
-                Every rupee funds a scholarship, a surgery, a meal, a shelter. Direct bank transfer keeps overheads near zero.
+                Every rupee funds a scholarship, a surgery, a meal, a shelter.
+                Direct bank transfer keeps overheads near zero.
               </p>
             </div>
           </Reveal>
 
           <Reveal delay={0.1}>
             <div className="h-full rounded-3xl border border-border p-7 sm:p-10 lg:p-14 bg-[var(--surface)]">
-              <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Bank A/c Details</p>
-              <h3 className="mt-3 font-display text-2xl text-[var(--brand-brown)]">Direct bank transfer</h3>
+              <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">
+                Bank A/c Details
+              </p>
+              <h3 className="mt-3 font-display text-2xl text-[var(--brand-brown)]">
+                Direct bank transfer
+              </h3>
               <dl className="mt-8 divide-y divide-border">
                 {[
-                  ["Account Name", "Sohan Kanwar Mangilal Tater Charitable Trust"],
+                  [
+                    "Account Name",
+                    "Sohan Kanwar Mangilal Tater Charitable Trust",
+                  ],
                   ["Bank Name", "RBL Bank"],
                   ["Account Number", "309841435214"],
                   ["IFSC", "RATN0000187"],
                 ].map(([k, v]) => (
                   <div key={k} className="py-4 flex justify-between gap-6">
-                    <dt className="text-sm text-foreground/55 uppercase tracking-wider">{k}</dt>
-                    <dd className="text-sm font-medium text-[var(--brand-brown)] text-right">{v}</dd>
+                    <dt className="text-sm text-foreground/55 uppercase tracking-wider">
+                      {k}
+                    </dt>
+                    <dd className="text-sm font-medium text-[var(--brand-brown)] text-right">
+                      {v}
+                    </dd>
                   </div>
                 ))}
               </dl>
               <p className="mt-8 text-xs text-foreground/55">
-                For 80G receipts and queries, please reach out via the contact section below.
+                For 80G receipts and queries, please reach out via the contact
+                section below.
               </p>
             </div>
           </Reveal>
@@ -920,33 +1471,99 @@ function Donate() {
 
 /* ───────────────────────── ABOUT ───────────────────────── */
 
+function TrustReportVideo() {
+  const [playing, setPlaying] = useState(false);
+
+  return (
+    <div className="relative aspect-video lg:aspect-auto lg:flex-1 overflow-hidden rounded-3xl border border-border bg-white shadow-[0_24px_70px_-35px_rgba(0,0,0,0.35)]">
+      {playing ? (
+        <iframe
+          title="Sohan Kanwar Mangilal Tater Charitable Trust report"
+          src="https://www.youtube-nocookie.com/embed/1eyNLVcsQZU?autoplay=1"
+          className="h-full w-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => setPlaying(true)}
+          className="group absolute inset-0 h-full w-full"
+          aria-label="Play the Trust report video"
+          data-cursor="plain"
+        >
+          <img
+            src={trustLogo}
+            alt=""
+            className="absolute inset-0 h-full w-full object-contain p-10 sm:p-14"
+          />
+          <span className="absolute inset-0 flex items-center justify-center">
+            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-red-600 shadow-lg">
+              <Play size={26} className="ml-1 fill-white text-white" />
+            </span>
+          </span>
+        </button>
+      )}
+    </div>
+  );
+}
+
 function About() {
   return (
     <section id="about" className="section-pad bg-[var(--surface)]">
       <div className="mx-auto max-w-7xl px-6 lg:px-10 space-y-14 lg:space-y-24">
         {/* Story */}
-        <div className="grid lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-4">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-10 lg:items-stretch">
+          <div className="lg:col-span-7 space-y-6">
             <Reveal>
-              <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Our Story</p>
-              <h2 className="mt-4 font-display text-4xl sm:text-5xl leading-[1.05]">A quiet legacy of service.</h2>
+              <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">
+                Our Story
+              </p>
+              <h2 className="mt-4 font-display text-4xl sm:text-5xl leading-[1.05]">
+                A quiet legacy of service.
+              </h2>
             </Reveal>
+            <div className="space-y-6 text-lg text-foreground/75 leading-relaxed">
+              <Reveal delay={0.1}>
+                <p>
+                  Established in{" "}
+                  <span className="text-[var(--brand-brown)] font-medium">
+                    2011
+                  </span>
+                  , the Sohan Kanwar Mangilal Tater Charitable Trust is
+                  headquartered in Chennai, Tamil Nadu, with deep roots in Merta
+                  City, Rajasthan.
+                </p>
+              </Reveal>
+              <Reveal delay={0.15}>
+                <p>
+                  Across more than a decade, the Trust has worked steadily across
+                  two states - funding scholarships, building healthcare
+                  infrastructure, supporting maternity care, and standing
+                  alongside communities, animals, and institutions in need.
+                </p>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p>
+                  The work is named for the families behind it but belongs to the
+                  people it serves: students, patients, mothers, elders, and the
+                  silent rural backbone of India.
+                </p>
+              </Reveal>
+            </div>
           </div>
-          <div className="lg:col-span-8 space-y-6 text-lg text-foreground/75 leading-relaxed">
-            <Reveal delay={0.1}>
-              <p>
-                Established in <span className="text-[var(--brand-brown)] font-medium">2011</span>, the Sohan Kanwar Mangilal Tater Charitable Trust is headquartered in Chennai, Tamil Nadu, with deep roots in Merta City, Rajasthan.
-              </p>
-            </Reveal>
-            <Reveal delay={0.15}>
-              <p>
-                Across more than a decade, the Trust has worked steadily across two states - funding scholarships, building healthcare infrastructure, supporting maternity care, and standing alongside communities, animals, and institutions in need.
-              </p>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <p>
-                The work is named for the families behind it but belongs to the people it serves: students, patients, mothers, elders, and the silent rural backbone of India.
-              </p>
+          <div className="lg:col-span-5 lg:h-full">
+            <Reveal delay={0.15} className="flex h-full flex-col">
+              <TrustReportVideo />
+              <a
+                href="https://www.youtube.com/watch?v=1eyNLVcsQZU"
+                target="_blank"
+                rel="noreferrer"
+                data-cursor="plain"
+                className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-[var(--brand-green)]"
+              >
+                Watch on YouTube <ArrowUpRight size={14} />
+              </a>
             </Reveal>
           </div>
         </div>
@@ -954,15 +1571,31 @@ function About() {
         {/* Mission Vision */}
         <div className="grid md:grid-cols-2 gap-6">
           {[
-            { tag: "Mission", title: "To uplift lives through education, healthcare and compassion - without distinction.", tone: "bg-background" },
-            { tag: "Vision", title: "A society where opportunity, dignity and care are within reach of every individual.", tone: "bg-[var(--brand-brown)] text-white" },
+            {
+              tag: "Mission",
+              title:
+                "To uplift lives through education, healthcare and compassion - without distinction.",
+              tone: "bg-background",
+            },
+            {
+              tag: "Vision",
+              title:
+                "A society where opportunity, dignity and care are within reach of every individual.",
+              tone: "bg-[var(--brand-brown)] text-white",
+            },
           ].map((c, i) => (
             <Reveal key={c.tag} delay={i * 0.1}>
-              <div className={`${c.tone} rounded-3xl p-6 sm:p-10 lg:p-14 border border-border h-full`}>
-                <div className={`text-xs tracking-[0.22em] uppercase font-medium ${i ? "text-[var(--brand-gold)]" : "text-[var(--brand-green)]"}`}>
+              <div
+                className={`${c.tone} rounded-3xl p-6 sm:p-10 lg:p-14 border border-border h-full`}
+              >
+                <div
+                  className={`text-xs tracking-[0.22em] uppercase font-medium ${i ? "text-[var(--brand-gold)]" : "text-[var(--brand-green)]"}`}
+                >
                   {c.tag}
                 </div>
-                <p className={`mt-6 font-display text-2xl lg:text-3xl leading-snug ${i ? "text-white" : "text-[var(--brand-brown)]"}`}>
+                <p
+                  className={`mt-6 font-display text-2xl lg:text-3xl leading-snug ${i ? "text-white" : "text-[var(--brand-brown)]"}`}
+                >
                   {c.title}
                 </p>
               </div>
@@ -973,15 +1606,21 @@ function About() {
         {/* Values */}
         <div>
           <Reveal>
-            <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Core Values</p>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl leading-tight">What we hold close.</h2>
+            <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">
+              Core Values
+            </p>
+            <h2 className="mt-4 font-display text-4xl sm:text-5xl leading-tight">
+              What we hold close.
+            </h2>
           </Reveal>
           <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {values.map(({ icon: Icon, title, text }, i) => (
               <Reveal key={title} delay={i * 0.05}>
                 <div className="bg-background rounded-2xl border border-border p-5 h-full hover:-translate-y-1 hover:shadow-[0_20px_60px_-30px_rgba(0,0,0,0.2)] active:-translate-y-1 active:shadow-[0_20px_60px_-30px_rgba(0,0,0,0.2)] transition-all duration-500 flex items-center justify-between gap-4 touch-manipulation">
                   <div>
-                    <h3 className="font-display text-lg text-[var(--brand-brown)]">{title}</h3>
+                    <h3 className="font-display text-lg text-[var(--brand-brown)]">
+                      {title}
+                    </h3>
                     <p className="mt-1 text-sm text-foreground/65">{text}</p>
                   </div>
                   <div className="shrink-0 inline-flex items-center justify-center h-10 w-10 rounded-xl bg-[var(--brand-gold)]/40 text-[var(--brand-brown)]">
@@ -992,7 +1631,6 @@ function About() {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
@@ -1005,7 +1643,9 @@ function Contact() {
     <section id="contact" className="section-pad bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <Reveal>
-          <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">Contact</p>
+          <p className="text-xs tracking-[0.22em] uppercase text-[var(--brand-green)] font-medium">
+            Contact
+          </p>
           <h2 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] text-balance max-w-3xl">
             We'd love to hear from you.
           </h2>
@@ -1015,18 +1655,30 @@ function Contact() {
           <Reveal>
             <div className="space-y-8">
               {[
-                { icon: MapPin, title: "Address", text: "No 52, Maddox Street, 1st Floor, Vepery, Chennai 600007" },
+                {
+                  icon: MapPin,
+                  title: "Address",
+                  text: "No 52, Maddox Street, 1st Floor, Vepery, Chennai 600007",
+                },
                 { icon: Phone, title: "Phone", text: "+91 95661 11058" },
                 { icon: Mail, title: "Email", text: "smtaterctrust@gmail.com" },
-                { icon: Clock, title: "Office hours", text: "Mon - Sat · 10:00 AM – 6:00 PM" },
+                {
+                  icon: Clock,
+                  title: "Office hours",
+                  text: "Mon - Sat · 10:00 AM – 6:00 PM",
+                },
               ].map((c) => (
                 <div key={c.title} className="flex gap-5">
                   <div className="shrink-0 h-12 w-12 rounded-xl bg-[var(--brand-gold)]/40 inline-flex items-center justify-center text-[var(--brand-brown)]">
                     <c.icon size={18} />
                   </div>
                   <div>
-                    <div className="text-xs uppercase tracking-wider text-foreground/55">{c.title}</div>
-                    <div className="mt-1 text-base sm:text-lg text-[var(--brand-brown)] font-medium">{c.text}</div>
+                    <div className="text-xs uppercase tracking-wider text-foreground/55">
+                      {c.title}
+                    </div>
+                    <div className="mt-1 text-base sm:text-lg text-[var(--brand-brown)] font-medium">
+                      {c.text}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -1070,10 +1722,18 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-6 lg:px-10 py-10 sm:py-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
         <div>
           <div className="flex items-center gap-3">
-            <img src={trustLogo} alt="Trust" className="h-12 w-12 object-contain" />
+            <img
+              src={trustLogo}
+              alt="Trust"
+              className="h-12 w-12 object-contain rounded-full bg-white p-1"
+            />
             <div>
-              <div className="font-display text-white text-lg leading-tight">Sohan Kanwar Mangilal Tater</div>
-              <div className="text-xs uppercase tracking-[0.18em] text-white/50">Charitable Trust</div>
+              <div className="font-display text-white text-lg leading-tight">
+                Sohan Kanwar Mangilal Tater
+              </div>
+              <div className="text-xs uppercase tracking-[0.18em] text-white/50">
+                Charitable Trust
+              </div>
             </div>
           </div>
           <p className="mt-6 text-sm text-white/65 max-w-sm">
@@ -1081,19 +1741,28 @@ function Footer() {
           </p>
         </div>
         <div>
-          <div className="text-xs uppercase tracking-[0.2em] text-[var(--brand-gold)]">Navigate</div>
+          <div className="text-xs uppercase tracking-[0.2em] text-[var(--brand-gold)]">
+            Navigate
+          </div>
           <ul className="mt-5 space-y-2 text-sm">
-            {["Home", "Impact", "Our Work", "Gallery", "Donate", "About"].map((l) => (
-              <li key={l}>
-                <a href={`#${l.toLowerCase().replace(" ", "")}`} className="hover:text-white transition">
-                  {l}
-                </a>
-              </li>
-            ))}
+            {["Home", "Impact", "Our Work", "Gallery", "Donate", "About"].map(
+              (l) => (
+                <li key={l}>
+                  <a
+                    href={`#${l.toLowerCase().replace(" ", "")}`}
+                    className="hover:text-white transition"
+                  >
+                    {l}
+                  </a>
+                </li>
+              ),
+            )}
           </ul>
         </div>
         <div>
-          <div className="text-xs uppercase tracking-[0.2em] text-[var(--brand-gold)]">Reach</div>
+          <div className="text-xs uppercase tracking-[0.2em] text-[var(--brand-gold)]">
+            Reach
+          </div>
           <ul className="mt-5 space-y-2 text-sm">
             <li>Chennai, Tamil Nadu</li>
             <li>Coimbatore, Tamil Nadu</li>
@@ -1104,7 +1773,10 @@ function Footer() {
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-6 flex flex-col sm:flex-row gap-3 justify-between text-xs text-white/50">
-          <div>© {new Date().getFullYear()} Sohan Kanwar Mangilal Tater Charitable Trust. All rights reserved.</div>
+          <div>
+            © {new Date().getFullYear()} Sohan Kanwar Mangilal Tater Charitable
+            Trust. All rights reserved.
+          </div>
           <div>Estd. 2011</div>
         </div>
       </div>
