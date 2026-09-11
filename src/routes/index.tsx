@@ -1740,9 +1740,6 @@ function Footer() {
               </div>
             </div>
           </div>
-          <p className="mt-6 text-sm text-white/65 max-w-sm">
-            Serving humanity since 2011 across Tamil Nadu and Rajasthan.
-          </p>
         </div>
         <div>
           <div className="text-xs uppercase tracking-[0.2em] text-[var(--brand-gold)]">
