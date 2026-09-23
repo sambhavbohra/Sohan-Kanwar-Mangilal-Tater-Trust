@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logoAsset from "@/assets/trust-logo-upscaled.png";
@@ -14,9 +14,34 @@ const links = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState(
-    () => window.location.hash.slice(1) || "impact",
-  );
+  const [active, setActive] = useState("impact");
+
+  // Read the real hash after mount (not in the initializer) so the client's
+  // first render matches the server's, avoiding a hydration mismatch.
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash) setActive(hash);
+  }, []);
+  // While a nav click is smooth-scrolling the page, the IntersectionObserver
+  // below still fires mid-transit and can briefly reassert the old section -
+  // causing the underline to jump back before settling. Suppress it until
+  // the scroll this click triggered has finished.
+  const navigatingRef = useRef(false);
+  const scrollEndTimer = useRef<ReturnType<typeof setTimeout>>();
+
+  const goTo = (id: string) => {
+    setActive(id);
+    navigatingRef.current = true;
+    const settle = () => {
+      clearTimeout(scrollEndTimer.current);
+      scrollEndTimer.current = setTimeout(() => {
+        navigatingRef.current = false;
+        window.removeEventListener("scroll", settle);
+      }, 120);
+    };
+    window.addEventListener("scroll", settle, { passive: true });
+    settle();
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -28,6 +53,7 @@ export function Navbar() {
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => {
+        if (navigatingRef.current) return;
         entries.forEach((e) => {
           if (e.isIntersecting) setActive(e.target.id);
         });
@@ -68,7 +94,7 @@ export function Navbar() {
               <a
                 href={l.href}
                 data-cursor="plain"
-                onClick={() => setActive(l.href.slice(1))}
+                onClick={() => goTo(l.href.slice(1))}
                 className={`relative px-4 py-2 text-sm font-medium outline-none transition-colors ${
                   active === l.href.slice(1)
                     ? "text-[var(--brand-green)]"
@@ -126,7 +152,7 @@ export function Navbar() {
                   <a
                     onClick={() => {
                       setOpen(false);
-                      setActive(l.href.slice(1));
+                      goTo(l.href.slice(1));
                     }}
                     href={l.href}
                     className="block py-3 text-lg font-display text-[var(--brand-brown)]"

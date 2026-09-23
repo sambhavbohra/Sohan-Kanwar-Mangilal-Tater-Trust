@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   GraduationCap,
@@ -48,6 +48,7 @@ import awardedRajasthanShreeImg from "@/assets/gallery-awarded-rajasthan-shree-r
 import cataractSurgeryChennaiMetroMahaveerImg from "@/assets/gallery-cataract-surgery-chennai-metro-mahaveer.jpeg";
 import cataractSurgeryFollowUpImg from "@/assets/gallery-cataract-surgery-follow-up.jpeg";
 import chaaraGodownNagaurImg from "@/assets/gallery-chaara-godown-nagaur.jpeg";
+import chaaraGodownNagaurPreviewImg from "@/assets/Chaara Godown Nagaur Preview.jpg";
 import foodDistributionDriveAkshayaTrustImg from "@/assets/gallery-food-distribution-drive-akshaya-trust.jpeg";
 import foodDistributionDriveNewImg from "@/assets/gallery-food-distribution-drive-new.jpeg";
 import foodDistributionDriveImg from "@/assets/gallery-food-distribution-drive.jpeg";
@@ -56,18 +57,25 @@ import freeEyeScreeningCampChennaiImg from "@/assets/gallery-free-eye-screening-
 import hallDonatedMarudharMertaCityImg from "@/assets/gallery-hall-donated-marudhar-merta-city.jpeg";
 import khwaspuraGaushalaShedImg from "@/assets/gallery-khwaspura-gaushala-shed.jpeg";
 import maternityWardInaugurationImg from "@/assets/gallery-maternity-ward-inauguration.jpeg";
+import maternityWardInaugurationPreviewImg from "@/assets/Maternity Ward Inauguration Preview.jpg";
 import mouSewaBhartiMultiSpecialtyHospitalImg from "@/assets/gallery-mou-sewa-bharti-multi-specialty-hospital.jpeg";
+import mouSewaBhartiMultiSpecialtyHospitalPreviewImg from "@/assets/MoU Sewa Bharti Multi Specialty Hospital Preview.jpg";
 import newbornCareUnitImg from "@/assets/gallery-newborn-care-unit.jpeg";
+import newbornCareUnitPreviewImg from "@/assets/Newborn Care Unit Preview.jpg";
 import prostheticsDistributionAdinathJainTrustImg from "@/assets/gallery-prosthetics-distribution-adinath-jain-trust-chennai.jpeg";
 import prostheticsDistributionImg from "@/assets/gallery-prosthetics-distribution.jpeg";
 import roomDonationDharamshalaLodgingImg from "@/assets/gallery-room-donation-dharamshala-lodging.jpeg";
 import sankaraEyeHospitalBlockImg from "@/assets/gallery-sankara-eye-hospital-block.jpeg";
 import tenthScholarshipDistributionImg from "@/assets/gallery-10th-scholarship-distribution-ceremony.jpeg";
+import tenthScholarshipDistributionPreviewImg from "@/assets/10th Scholarship Distribution Ceremony Preview.jpg";
 import eleventhScholarshipDistributionImg from "@/assets/gallery-11th-scholarship-distribution-ceremony.jpeg";
 import thirteenthScholarshipDistributionImg from "@/assets/gallery-13th-scholarship-distribution-439-students.jpeg";
 import twentyTwoLakhScholarshipDistributionImg from "@/assets/gallery-22-lakh-scholarship-distribution-ceremony.jpeg";
+import twentyTwoLakhScholarshipDistributionPreviewImg from "@/assets/22 Lakh Scholarship Distribution Ceremony Preview.jpg";
 import inaugurationVivekanandaVidyalayaImg from "@/assets/gallery-inauguration-vivekananda-vidyalaya.jpeg";
+import inaugurationVivekanandaVidyalayaPreviewImg from "@/assets/Inauguration Vivekananda Vidyalaya Preview.jpg";
 import maternityChildCareHomeHandoverImg from "@/assets/gallery-maternity-child-care-home-handover.jpeg";
+import maternityChildCareHomeHandoverPreviewImg from "@/assets/Maternity And Child Care Home Handover Preview.jpg";
 import maternityHomePlaquePresentationImg from "@/assets/gallery-maternity-home-plaque-presentation.jpeg";
 import maternityHospitalImg from "@/assets/gallery-maternity-hospital.jpeg";
 import vivekanandaVidyalayaImg from "@/assets/gallery-vivekananda-vidyalaya.jpeg";
@@ -75,7 +83,9 @@ import multispecialityHospitalBhoomiPoojaImg from "@/assets/Multispeciality Hosp
 import bhoomiPoojaCeremonyVivekanandaImg from "@/assets/Bhoomi Pooja Ceremony Vivekananda Vidhyalaya.jpeg";
 import bhoomiPoojaCeremonyHospitalImg from "@/assets/Bhoomi Pooja Cermony Multi-speciality Hospital.jpeg";
 import bhoomiPoojaCancerHospitalGoonipalayamImg from "@/assets/Bhoomi Pooja Cancer Hospital Goonipalayam.jpg";
+import bhoomiPoojaCancerHospitalGoonipalayamPreviewImg from "@/assets/Bhoomi Pooja Cancer Hospital Goonipalayam Preview.jpg";
 import cancerHospitalGoonipalayamPressImg from "@/assets/Cancer and Palliative Care Hospital Goonipalayam Press Coverage.jpg";
+import cancerHospitalGoonipalayamPressPreviewImg from "@/assets/Cancer and Palliative Care Hospital Goonipalayam Press Coverage Preview.jpg";
 import sambhavnathJainMandirPrathisthaImg from "@/assets/Shri Sambhavnath Jain Mandir Prathistha Mahamahotsav.jpg";
 import cattleFeedingGaushalaImg from "@/assets/Cattle Feeding in Gaushala.jpeg";
 import mangilalChandjiTaterImg from "@/assets/founder-mangilal-chandji-tater.jpeg";
@@ -431,36 +441,44 @@ type GalleryCat = (typeof galleryTabs)[number]["id"];
 const gallery: {
   cat: Exclude<GalleryCat, "All">;
   caption: string;
-  h: number;
+  // width / height of the image actually shown (previewImg, if set), so the
+  // card's own shape always matches it exactly - no cropping, at any column
+  // width.
+  ratio: number;
   tone: string;
   img: string;
+  // Used only for the grid thumbnail when the full `img` (e.g. a whole
+  // newspaper page) doesn't crop well into a photo card; the lightbox still
+  // opens the full `img`.
+  previewImg?: string;
   hideFromAll?: boolean;
 }[] = [
   {
     cat: "Healthcare",
     caption: "Free Eye Screening Camp Chennai",
-    h: 320,
+    ratio: 2.346,
     tone: "from-[#1E3A5F] to-[#142943]",
     img: freeEyeScreeningCampChennaiImg,
   },
   {
     cat: "Education",
     caption: "Annual Scholarship Ceremony Chennai",
-    h: 420,
+    ratio: 1.5,
     tone: "from-[#800000] to-[#4d0000]",
     img: annualScholarshipCeremonyChennaiImg,
   },
   {
     cat: "Healthcare",
     caption: "Maternity Ward Inauguration",
-    h: 300,
+    ratio: 1.794,
     tone: "from-[#C9A23A] to-[#8a6e1f]",
     img: maternityWardInaugurationImg,
+    previewImg: maternityWardInaugurationPreviewImg,
   },
   {
     cat: "Animal Welfare",
     caption: "Khwaspura Gaushala Shed",
-    h: 360,
+    ratio: 1.333,
     tone: "from-[#8FA68E] to-[#4f6651]",
     img: khwaspuraGaushalaShedImg,
     hideFromAll: true,
@@ -468,21 +486,21 @@ const gallery: {
   {
     cat: "Healthcare",
     caption: "Sankara Eye Hospital Block",
-    h: 400,
+    ratio: 1.333,
     tone: "from-[#800000] to-[#3d0000]",
     img: sankaraEyeHospitalBlockImg,
   },
   {
     cat: "Healthcare",
     caption: "Cataract Surgery Follow-Up",
-    h: 280,
+    ratio: 2.221,
     tone: "from-[#1E3A5F] to-[#142943]",
     img: cataractSurgeryFollowUpImg,
   },
   {
     cat: "Community",
     caption: "Food Distribution Drive",
-    h: 360,
+    ratio: 1.662,
     tone: "from-[#C9A23A] to-[#8a6e1f]",
     img: foodDistributionDriveImg,
     hideFromAll: true,
@@ -490,43 +508,46 @@ const gallery: {
   {
     cat: "Community",
     caption: "Room Donation To Dharamshala Lodging",
-    h: 320,
+    ratio: 2.207,
     tone: "from-[#1E3A5F] to-[#142943]",
     img: roomDonationDharamshalaLodgingImg,
   },
   {
     cat: "Healthcare",
     caption: "Newborn Care Unit",
-    h: 320,
+    ratio: 1.794,
     tone: "from-[#C9A23A] to-[#8a6e1f]",
     img: newbornCareUnitImg,
+    previewImg: newbornCareUnitPreviewImg,
     hideFromAll: true,
   },
   {
     cat: "Animal Welfare",
     caption: "Chaara Godown Nagaur",
-    h: 340,
+    ratio: 1.794,
     tone: "from-[#8FA68E] to-[#4f6651]",
     img: chaaraGodownNagaurImg,
+    previewImg: chaaraGodownNagaurPreviewImg,
   },
   {
     cat: "Community",
     caption: "Food Distribution Drive",
-    h: 420,
+    ratio: 0.75,
     tone: "from-[#C9A23A] to-[#8a6e1f]",
     img: foodDistributionDriveNewImg,
+    hideFromAll: true,
   },
   {
     cat: "Community",
     caption: "Food Distribution Drive With Akshaya Trust",
-    h: 300,
+    ratio: 2.165,
     tone: "from-[#C9A23A] to-[#8a6e1f]",
     img: foodDistributionDriveAkshayaTrustImg,
   },
   {
     cat: "Healthcare",
     caption: "Prosthetics Distribution",
-    h: 300,
+    ratio: 1.796,
     tone: "from-[#1E3A5F] to-[#142943]",
     img: prostheticsDistributionImg,
     hideFromAll: true,
@@ -534,7 +555,7 @@ const gallery: {
   {
     cat: "Community",
     caption: "Hall Donated In Marudhar Merta City",
-    h: 320,
+    ratio: 1.754,
     tone: "from-[#800000] to-[#3d0000]",
     img: hallDonatedMarudharMertaCityImg,
     hideFromAll: true,
@@ -543,21 +564,22 @@ const gallery: {
     cat: "Healthcare",
     caption:
       "MoU Between Our Trust And Sewa Bharti Tamil Nadu For Multi-Specialty Hospital",
-    h: 420,
+    ratio: 1.643,
     tone: "from-[#800000] to-[#3d0000]",
     img: mouSewaBhartiMultiSpecialtyHospitalImg,
+    previewImg: mouSewaBhartiMultiSpecialtyHospitalPreviewImg,
   },
   {
     cat: "Healthcare",
     caption: "Multispeciality Hospital Bhoomi Pooja",
-    h: 360,
+    ratio: 1.5,
     tone: "from-[#800000] to-[#3d0000]",
     img: multispecialityHospitalBhoomiPoojaImg,
   },
   {
     cat: "Community",
     caption: "Food Distribution",
-    h: 360,
+    ratio: 1.333,
     tone: "from-[#C9A23A] to-[#8a6e1f]",
     img: foodDistributionImg,
     hideFromAll: true,
@@ -565,7 +587,7 @@ const gallery: {
   {
     cat: "Healthcare",
     caption: "Cataract Surgery With Chennai Metro Mahaveer",
-    h: 340,
+    ratio: 1.499,
     tone: "from-[#1E3A5F] to-[#142943]",
     img: cataractSurgeryChennaiMetroMahaveerImg,
     hideFromAll: true,
@@ -573,29 +595,30 @@ const gallery: {
   {
     cat: "Community",
     caption: "Awarded Rajasthan Shree By Rajasthan Sangh Chennai",
-    h: 320,
+    ratio: 1.504,
     tone: "from-[#800000] to-[#4d0000]",
     img: awardedRajasthanShreeImg,
   },
   {
     cat: "Healthcare",
     caption: "Prosthetics Distribution With Adinath Jain Trust Chennai",
-    h: 360,
+    ratio: 1.333,
     tone: "from-[#1E3A5F] to-[#142943]",
     img: prostheticsDistributionAdinathJainTrustImg,
   },
   {
     cat: "Education",
     caption: "10th Scholarship Distribution Ceremony",
-    h: 340,
+    ratio: 1.345,
     tone: "from-[#800000] to-[#4d0000]",
     img: tenthScholarshipDistributionImg,
+    previewImg: tenthScholarshipDistributionPreviewImg,
     hideFromAll: true,
   },
   {
     cat: "Education",
     caption: "11th Scholarship Distribution Ceremony",
-    h: 380,
+    ratio: 1.451,
     tone: "from-[#1E3A5F] to-[#142943]",
     img: eleventhScholarshipDistributionImg,
     hideFromAll: true,
@@ -603,7 +626,7 @@ const gallery: {
   {
     cat: "Education",
     caption: "13th Scholarship Distribution To 439 Students",
-    h: 420,
+    ratio: 1.219,
     tone: "from-[#C9A23A] to-[#8a6e1f]",
     img: thirteenthScholarshipDistributionImg,
     hideFromAll: true,
@@ -611,29 +634,31 @@ const gallery: {
   {
     cat: "Education",
     caption: "22 Lakh Scholarship Distribution Ceremony",
-    h: 300,
+    ratio: 2.09,
     tone: "from-[#800000] to-[#3d0000]",
     img: twentyTwoLakhScholarshipDistributionImg,
+    previewImg: twentyTwoLakhScholarshipDistributionPreviewImg,
     hideFromAll: true,
   },
   {
     cat: "Education",
     caption: "Inauguration Of Vivekananda Vidyalaya",
-    h: 360,
+    ratio: 1.452,
     tone: "from-[#1E3A5F] to-[#142943]",
     img: inaugurationVivekanandaVidyalayaImg,
+    previewImg: inaugurationVivekanandaVidyalayaPreviewImg,
   },
   {
     cat: "Education",
     caption: "Vivekananda Vidyalaya",
-    h: 300,
+    ratio: 1.566,
     tone: "from-[#C9A23A] to-[#8a6e1f]",
     img: vivekanandaVidyalayaImg,
   },
   {
     cat: "Education",
     caption: "Bhoomi Pooja Ceremony — Vivekananda Vidhyalaya",
-    h: 360,
+    ratio: 0.708,
     tone: "from-[#C9A23A] to-[#8a6e1f]",
     img: bhoomiPoojaCeremonyVivekanandaImg,
     hideFromAll: true,
@@ -641,7 +666,7 @@ const gallery: {
   {
     cat: "Healthcare",
     caption: "Bhoomi Pooja Ceremony — Multi-speciality Hospital",
-    h: 360,
+    ratio: 0.922,
     tone: "from-[#800000] to-[#4d0000]",
     img: bhoomiPoojaCeremonyHospitalImg,
     hideFromAll: true,
@@ -649,29 +674,33 @@ const gallery: {
   {
     cat: "Healthcare",
     caption: "Bhoomi Pooja, Cancer Hospital in Goonipalayam",
-    h: 380,
+    ratio: 2.154,
     tone: "from-[#1E3A5F] to-[#142943]",
     img: bhoomiPoojaCancerHospitalGoonipalayamImg,
+    previewImg: bhoomiPoojaCancerHospitalGoonipalayamPreviewImg,
+    hideFromAll: true,
   },
   {
     cat: "Healthcare",
     caption: "Cancer and Palliative Care Hospital in Goonipalayam",
-    h: 340,
+    ratio: 1.468,
     tone: "from-[#1E3A5F] to-[#142943]",
     img: cancerHospitalGoonipalayamPressImg,
+    previewImg: cancerHospitalGoonipalayamPressPreviewImg,
     hideFromAll: true,
   },
   {
     cat: "Community",
     caption: "Shri Sambhavnath Jain Mandir Prathistha Mahamahotsav",
-    h: 340,
+    ratio: 2.165,
     tone: "from-[#C9A23A] to-[#8a6e1f]",
     img: sambhavnathJainMandirPrathisthaImg,
+    hideFromAll: true,
   },
   {
     cat: "Animal Welfare",
     caption: "Cattle Feeding in Gaushala",
-    h: 360,
+    ratio: 0.75,
     tone: "from-[#8FA68E] to-[#4f6651]",
     img: cattleFeedingGaushalaImg,
     hideFromAll: true,
@@ -679,21 +708,23 @@ const gallery: {
   {
     cat: "Healthcare",
     caption: "Maternity And Child Care Home Handover",
-    h: 340,
+    ratio: 2.928,
     tone: "from-[#800000] to-[#4d0000]",
     img: maternityChildCareHomeHandoverImg,
+    previewImg: maternityChildCareHomeHandoverPreviewImg,
+    hideFromAll: true,
   },
   {
     cat: "Healthcare",
     caption: "Maternity Home Plaque Presentation",
-    h: 420,
+    ratio: 1.432,
     tone: "from-[#1E3A5F] to-[#142943]",
     img: maternityHomePlaquePresentationImg,
   },
   {
     cat: "Healthcare",
     caption: "Maternity Hospital",
-    h: 320,
+    ratio: 1.488,
     tone: "from-[#C9A23A] to-[#8a6e1f]",
     img: maternityHospitalImg,
     hideFromAll: true,
@@ -1250,6 +1281,45 @@ function Gallery() {
       ? gallery.filter((g) => !g.hideFromAll)
       : gallery.filter((g) => g.cat === cat);
 
+  // Starts at 3 to match the server-rendered markup (no `window` there);
+  // corrected right after mount if the client is actually narrower, avoiding
+  // a hydration mismatch from branching on `window` during initial render.
+  const [colCount, setColCount] = useState(3);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const onChange = () => setColCount(mq.matches ? 3 : 2);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  // Pack items into columns by always adding to the shortest column so far,
+  // instead of CSS multi-column's approximate balance - keeps column bottoms
+  // level instead of leaving a ragged gap under the shorter columns. Cards
+  // no longer have a fixed pixel height (that's what forced cropping), so
+  // this estimates each item's rendered height from its own aspect ratio at
+  // a rough column width - close enough for balancing, doesn't need to be
+  // exact since nothing here affects the actual rendered size.
+  const columns = useMemo(() => {
+    const assumedColWidth = colCount === 3 ? 400 : 170;
+    const heights = new Array(colCount).fill(0);
+    const cols: (typeof items)[number][][] = Array.from(
+      { length: colCount },
+      () => [],
+    );
+    items.forEach((g, i) => {
+      let shortest = 0;
+      for (let c = 1; c < colCount; c++)
+        if (heights[c] < heights[shortest]) shortest = c;
+      cols[shortest].push({ ...g, i } as (typeof items)[number] & {
+        i: number;
+      });
+      heights[shortest] += assumedColWidth / g.ratio + 20;
+    });
+    return cols as ((typeof items)[number] & { i: number })[][];
+  }, [items, colCount]);
+
   useEffect(() => {
     if (active === null) return;
     const onKey = (e: KeyboardEvent) => {
@@ -1295,47 +1365,51 @@ function Gallery() {
           </div>
         </Reveal>
 
-        <div className="mt-14 columns-2 lg:columns-3 gap-5 [column-fill:_balance]">
-          <AnimatePresence mode="popLayout">
-            {items.map((g, i) => (
-              <motion.button
-                key={`${g.caption}-${i}`}
-                data-cursor="plain"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2, delay: i * 0.02 }}
-                onClick={() => setActive(i)}
-                className={`mb-5 w-full break-inside-avoid relative overflow-hidden rounded-2xl ${g.img ? "bg-[var(--surface)]" : `bg-gradient-to-br ${g.tone}`} group block touch-manipulation`}
-                style={{ height: g.h }}
-              >
-                {g.img && (
-                  <img
-                    src={g.img}
-                    alt={g.caption}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover scale-125"
-                  />
-                )}
-                <div
-                  className={`absolute inset-0 ${
-                    g.img
-                      ? "bg-gradient-to-t from-black/75 via-black/10 to-transparent"
-                      : "bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_60%)]"
-                  }`}
-                />
-                <div className="absolute inset-0 flex flex-col justify-end p-3 sm:p-6">
-                  <div className="text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-white/70">
-                    {g.cat}
-                  </div>
-                  <div className="mt-1 sm:mt-2 font-display text-sm sm:text-xl text-white leading-snug">
-                    {g.caption}
-                  </div>
-                </div>
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition bg-black/20" />
-              </motion.button>
-            ))}
-          </AnimatePresence>
+        <div className="mt-14 flex gap-5">
+          {columns.map((col, ci) => (
+            <div key={ci} className="flex min-w-0 flex-1 flex-col gap-5">
+              <AnimatePresence mode="popLayout">
+                {col.map((g) => (
+                  <motion.button
+                    key={`${g.caption}-${g.i}`}
+                    data-cursor="plain"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2, delay: g.i * 0.02 }}
+                    onClick={() => setActive(g.i)}
+                    className={`w-full relative overflow-hidden rounded-2xl ${g.img ? "bg-[var(--surface)]" : `bg-gradient-to-br ${g.tone}`} group block touch-manipulation`}
+                    style={{ aspectRatio: g.ratio }}
+                  >
+                    {g.img && (
+                      <img
+                        src={g.previewImg ?? g.img}
+                        alt={g.caption}
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                    )}
+                    <div
+                      className={`absolute inset-0 ${
+                        g.img
+                          ? "bg-gradient-to-t from-black/75 via-black/10 to-transparent"
+                          : "bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_60%)]"
+                      }`}
+                    />
+                    <div className="absolute inset-0 flex flex-col justify-end p-3 sm:p-6">
+                      <div className="text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-white/70">
+                        {g.cat}
+                      </div>
+                      <div className="mt-1 sm:mt-2 font-display text-sm sm:text-xl text-white leading-snug">
+                        {g.caption}
+                      </div>
+                    </div>
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition bg-black/20" />
+                  </motion.button>
+                ))}
+              </AnimatePresence>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -1388,10 +1462,10 @@ function Gallery() {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className={`relative w-full max-w-2xl aspect-[4/3] rounded-3xl overflow-hidden ${
+              className={`relative rounded-3xl overflow-hidden ${
                 items[active].img
                   ? "bg-[var(--surface)]"
-                  : `bg-gradient-to-br ${items[active].tone}`
+                  : `bg-gradient-to-br ${items[active].tone} w-full max-w-2xl aspect-[4/3]`
               }`}
               onClick={(e) => e.stopPropagation()}
             >
@@ -1399,7 +1473,7 @@ function Gallery() {
                 <img
                   src={items[active].img}
                   alt={items[active].caption}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="block max-h-[80vh] max-w-[90vw] w-auto h-auto"
                 />
               )}
               <div
