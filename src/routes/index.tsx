@@ -74,6 +74,9 @@ import vivekanandaVidyalayaImg from "@/assets/gallery-vivekananda-vidyalaya.jpeg
 import multispecialityHospitalBhoomiPoojaImg from "@/assets/Multispeciality Hospital Bhoomi Pooja.jpeg";
 import bhoomiPoojaCeremonyVivekanandaImg from "@/assets/Bhoomi Pooja Ceremony Vivekananda Vidhyalaya.jpeg";
 import bhoomiPoojaCeremonyHospitalImg from "@/assets/Bhoomi Pooja Cermony Multi-speciality Hospital.jpeg";
+import bhoomiPoojaCancerHospitalGoonipalayamImg from "@/assets/Bhoomi Pooja Cancer Hospital Goonipalayam.jpg";
+import cancerHospitalGoonipalayamPressImg from "@/assets/Cancer and Palliative Care Hospital Goonipalayam Press Coverage.jpg";
+import sambhavnathJainMandirPrathisthaImg from "@/assets/Shri Sambhavnath Jain Mandir Prathistha Mahamahotsav.jpg";
 import cattleFeedingGaushalaImg from "@/assets/Cattle Feeding in Gaushala.jpeg";
 import mangilalChandjiTaterImg from "@/assets/founder-mangilal-chandji-tater.jpeg";
 import sohanKanwarTaterImg from "@/assets/founder-sohan-kanwar-tater.jpeg";
@@ -642,6 +645,28 @@ const gallery: {
     tone: "from-[#800000] to-[#4d0000]",
     img: bhoomiPoojaCeremonyHospitalImg,
     hideFromAll: true,
+  },
+  {
+    cat: "Healthcare",
+    caption: "Bhoomi Pooja, Cancer Hospital in Goonipalayam",
+    h: 380,
+    tone: "from-[#1E3A5F] to-[#142943]",
+    img: bhoomiPoojaCancerHospitalGoonipalayamImg,
+  },
+  {
+    cat: "Healthcare",
+    caption: "Cancer and Palliative Care Hospital in Goonipalayam",
+    h: 340,
+    tone: "from-[#1E3A5F] to-[#142943]",
+    img: cancerHospitalGoonipalayamPressImg,
+    hideFromAll: true,
+  },
+  {
+    cat: "Community",
+    caption: "Shri Sambhavnath Jain Mandir Prathistha Mahamahotsav",
+    h: 340,
+    tone: "from-[#C9A23A] to-[#8a6e1f]",
+    img: sambhavnathJainMandirPrathisthaImg,
   },
   {
     cat: "Animal Welfare",
@@ -1289,7 +1314,7 @@ function Gallery() {
                     src={g.img}
                     alt={g.caption}
                     loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="absolute inset-0 h-full w-full object-cover scale-125"
                   />
                 )}
                 <div

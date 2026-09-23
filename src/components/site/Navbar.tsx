@@ -5,6 +5,7 @@ import logoAsset from "@/assets/trust-logo-upscaled.png";
 
 const links = [
   { href: "#impact", label: "Impact" },
+  { href: "#work", label: "Our Work" },
   { href: "#recognition", label: "Partners" },
   { href: "#about", label: "Our Story" },
   { href: "#gallery", label: "Gallery" },
@@ -13,7 +14,9 @@ const links = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("impact");
+  const [active, setActive] = useState(
+    () => window.location.hash.slice(1) || "impact",
+  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -65,6 +68,7 @@ export function Navbar() {
               <a
                 href={l.href}
                 data-cursor="plain"
+                onClick={() => setActive(l.href.slice(1))}
                 className={`relative px-4 py-2 text-sm font-medium outline-none transition-colors ${
                   active === l.href.slice(1)
                     ? "text-[var(--brand-green)]"
@@ -120,7 +124,10 @@ export function Navbar() {
               {links.map((l) => (
                 <li key={l.href}>
                   <a
-                    onClick={() => setOpen(false)}
+                    onClick={() => {
+                      setOpen(false);
+                      setActive(l.href.slice(1));
+                    }}
                     href={l.href}
                     className="block py-3 text-lg font-display text-[var(--brand-brown)]"
                   >
