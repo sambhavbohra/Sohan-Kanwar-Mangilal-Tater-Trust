@@ -212,9 +212,9 @@ const work: Record<
     },
     {
       name: "Lions Eye Bank OMNI Van",
-      location: "Chennai",
+      location: "Lions Eye Bank, Egmore, Chennai",
       impact: "Mobile Care",
-      desc: "Mobile eye care to villages.",
+      desc: "An Omni ambulance donated for mobile eye care to villages and to facilitate eye and organ collection.",
     },
     {
       name: "Dialysis Machines",
@@ -251,12 +251,6 @@ const work: Record<
       location: "RYA Madras Cosmo Foundation",
       impact: "Cancer Detection Centre",
       desc: "Support towards the Cancer Detection Centre.",
-    },
-    {
-      name: "Eye Donation & Organ-Donation Support",
-      location: "Lions Eye Bank, Egmore",
-      impact: "Omni Ambulance",
-      desc: "An Omni ambulance donated to facilitate eye collection.",
     },
   ],
   Community: [
